@@ -7,7 +7,14 @@
 			"api"
 		]
 	},
-	"plugins" : [],
+	"plugins" : [
+		"plugins/markdown"
+	],
+	"markdown" : {
+		"parser" : "gfm",
+		"githubRepoName" : "pegasus",
+		"githubRepoOwner" : "joskuijpers"
+	},
 	"templates" : {
 		"cleverLinks" : true,
 		"monospaceLinks" : false,
