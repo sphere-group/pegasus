@@ -10,3 +10,6 @@
 # Documentation
 **/docs/
 **/Docs/
+
+# Node
+node_modules/

@@ -3,10 +3,16 @@ Pegasus
 
 The protoype API for Sphere 2.0, codenamed Pegasus.
 
-## JSDoc ##
+## Generating documentation ##
 The API is written using empty function and class statements with
 documentation using JSDoc. To create a browseable documentation,
 run JSDoc on this repository.
+
+* Install node.js
+* Install JSDoc: `npm install jsdoc`
+* [Optional] Install templates used by the Sphere Team: `npm install ink-docstrap`
+* Run JSDoc: `jsdoc -c jsdoc.json` (you will have to configure the template yourself
+  if you installed both packages globally, you need to use `-t ../ink-docstrap/template`).
 
 ## Issues and Pullrequests ##
 If you have ideas, comments, troubles: make an issue. If you
@@ -16,7 +22,7 @@ created some part of the API in a fork, make a pull request.
 Pegasus is released under the 2-clause BSD license, as seen below.
 
 ```
-Copyright (c) 2014 The Sphere Group. All rights reserved.
+Copyright (c) 2014 The Sphere Team. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
