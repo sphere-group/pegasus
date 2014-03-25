@@ -14,7 +14,7 @@ run JSDoc on this repository.
 * Run JSDoc: `jsdoc -c jsdoc.json` (you will have to configure the template yourself
   if you installed both packages globally, you need to use `-t ../ink-docstrap/template`).
 
-## Issues and Pullrequests ##
+## Issues and Pull Requests ##
 If you have ideas, comments, troubles: make an issue. If you
 created some part of the API in a fork, make a pull request.
 
