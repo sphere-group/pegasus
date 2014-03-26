@@ -10,7 +10,7 @@ JSON Font
 {
 	"type"		:	"font",
 	"version"	:	1,
-	"uri"		:	"data:video/x-mng;base64,<mng data>"
+	"uri"		:	"data:image/x-mng;base64,<mng data>"
 }
 ````
 
