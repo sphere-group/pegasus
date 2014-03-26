@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Pegasus Class: Bonjour.Peer</title>
+	<title>Pegasus Class: Mouse.Wheel</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -99,14 +99,14 @@
 					
 
 
-	<h1 class="page-title">Class: Bonjour.Peer</h1>
+	<h1 class="page-title">Class: Mouse.Wheel</h1>
 <section>
 
 <header>
     <h2>
-        <span class="ancestors"><a href="Network.html">Network</a>.</span>
+        <span class="ancestors"><a href="Input.html">Input</a>.</span>
     
-    Bonjour.Peer
+    Mouse.Wheel
     </h2>
     
 </header>
@@ -118,7 +118,7 @@
     
         
 <dt>
-    <h4 class="name" id="Bonjour.Peer"><span class="type-signature"></span>new Bonjour.Peer<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Mouse.Wheel"><span class="type-signature"></span>new Mouse.Wheel<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -136,56 +136,6 @@
 <dl class="details">
     
 
-        <h5 class="subsection-title">Properties:</h5>
-
-        <dl>
-
-<table class="props table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-</dl>
-
     
 
     
@@ -195,7 +145,12 @@
     
 
     
-
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Jos Kuijpers (Rahkiin)</li>
+        </ul>
+    </dd>
     
 
     
@@ -207,7 +162,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 112
+        mouse.js, line 86
     </li></ul></dd>
     
 
@@ -246,6 +201,250 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="Event"><span class="type-signature">&lt;static, readonly> </span>Event<span class="type-signature"> :Number</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Mouse wheel events.</p>
+    </div>
+    
+    
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+        <h5 class="subsection-title">Properties:</h5>
+
+        <dl>
+
+<table class="props table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>NONE</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>No scroll event.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>UP</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last"><p>Scroll up event.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>DOWN</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    2
+                
+                </td>
+            
+
+            <td class="description last"><p>Scroll down event.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>LEFT</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    3
+                
+                </td>
+            
+
+            <td class="description last"><p>Scroll left event.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>RIGHT</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    4
+                
+                </td>
+            
+
+            <td class="description last"><p>Scroll right event.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+</dl>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        mouse.js, line 112
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -253,7 +452,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="getSocket"><span class="type-signature"></span>getSocket<span class="signature">()</span><span class="type-signature"> &rarr; {Socket}</span></h4>
+    <h4 class="name" id="clearQueue"><span class="type-signature">&lt;static> </span>clearQueue<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -261,7 +460,7 @@
     
     
     <div class="description">
-        <p>Get a socket for to the peer.</p>
+        <p>Clear the wheel event queue.</p>
     </div>
     
 
@@ -294,7 +493,76 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 136
+        mouse.js, line 103
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="getEvent"><span class="type-signature">&lt;static> </span>getEvent<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Input.Mouse.Wheel.html#Event">Input.Mouse.Wheel.Event</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Get an event from the eventqueue.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        mouse.js, line 97
     </li></ul></dd>
     
 
@@ -319,7 +587,7 @@
     
             
 <div class="param-desc">
-    <p>A new socket. Call connect() to connect it to the peer.</p>
+    <p>Event, or Event.NONE when queue is empty.</p>
 </div>
 
 
@@ -330,7 +598,7 @@
 	</dt>
 	<dd>
 		
-<span class="param-type">Socket</span>
+<span class="param-type"><a href="Input.Mouse.Wheel.html#Event">Input.Mouse.Wheel.Event</a></span>
 
 
 	</dd>
@@ -338,128 +606,6 @@
 
 
         
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="resolve"><span class="type-signature"></span>resolve<span class="signature">(callback)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Find a hostname+port combination for this peer.</p>
-<p>You should not store the hostname and port in a persistent storage,
-as it might change over time. Store the name instead and call
-Bonjour.resolve().</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">resolveCallback</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Callback called when a hostname+port
-combination is found.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 128
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
     
     
 </dd>

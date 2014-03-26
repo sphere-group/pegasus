@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Pegasus Namespace: Network</title>
+	<title>Pegasus Class: Mouse</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -99,12 +99,14 @@
 					
 
 
-	<h1 class="page-title">Namespace: Network</h1>
+	<h1 class="page-title">Class: Mouse</h1>
 <section>
 
 <header>
     <h2>
-    Network
+        <span class="ancestors"><a href="Input.html">Input</a>.</span>
+    
+    Mouse
     </h2>
     
 </header>
@@ -115,8 +117,22 @@
 
     
         
+<dt>
+    <h4 class="name" id="Mouse"><span class="type-signature"></span>new Mouse<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
 
-        
+    
+    
+    
+    
+    
+    
+    
 <dl class="details">
     
 
@@ -146,7 +162,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 26
+        mouse.js, line 26
     </li></ul></dd>
     
 
@@ -157,8 +173,20 @@
     
 </dl>
 
+    
+    
 
-        
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
     
     </div>
 
@@ -168,16 +196,6 @@
 
     
 
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="Network.Bonjour.html">Bonjour</a></dt>
-            <dd></dd>
-        
-            <dt><a href="Network.Bonjour.Peer.html">Bonjour.Peer</a></dt>
-            <dd></dd>
-        </dl>
     
 
     
@@ -188,21 +206,236 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="localAddress"><span class="type-signature">&lt;static> </span>localAddress<span class="type-signature"></span></h4>
+    <h4 class="name" id="Button"><span class="type-signature">&lt;static, readonly> </span>Button<span class="type-signature"> :Number</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>The network address of the local computer.</p>
+        <p>Mouse buttons.</p>
     </div>
     
     
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+            </li>
+        </ul>
+    
 
     
 <dl class="details">
+    
+
+        <h5 class="subsection-title">Properties:</h5>
+
+        <dl>
+
+<table class="props table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>NONE</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>No button.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>LEFT</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last"><p>Left mouse button.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>RIGHT</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    2
+                
+                </td>
+            
+
+            <td class="description last"><p>Right mouse button.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>MIDDLE</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    3
+                
+                </td>
+            
+
+            <td class="description last"><p>Middle mouse button.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>EXTRA1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    4
+                
+                </td>
+            
+
+            <td class="description last"><p>First extra mouse button.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>EXTRA2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    5
+                
+                </td>
+            
+
+            <td class="description last"><p>Second extra mouse button.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+</dl>
+
     
 
     
@@ -224,7 +457,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 35
+        mouse.js, line 71
     </li></ul></dd>
     
 
@@ -242,14 +475,14 @@
         
             
 <dt>
-    <h4 class="name" id="localName"><span class="type-signature">&lt;static> </span>localName<span class="type-signature"></span></h4>
+    <h4 class="name" id="numberOfButtons"><span class="type-signature">&lt;static> </span>numberOfButtons<span class="type-signature"></span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>The network name of the local computer.</p>
+        <p>Number of buttons available in the mouse.</p>
     </div>
     
     
@@ -278,7 +511,115 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 41
+        mouse.js, line 45
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="x"><span class="type-signature">&lt;static> </span>x<span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Horizontal position of the mouse, in points, within the window.</p>
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        mouse.js, line 35
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="y"><span class="type-signature">&lt;static> </span>y<span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Vertical position of the mouse, in points, within the window.</p>
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        mouse.js, line 40
     </li></ul></dd>
     
 
@@ -302,7 +643,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="listenOnPort"><span class="type-signature">&lt;static> </span>listenOnPort<span class="signature">(port, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="isButtonpressed"><span class="type-signature">&lt;static> </span>isButtonpressed<span class="signature">(button)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
     
     
 </dt>
@@ -310,7 +651,7 @@
     
     
     <div class="description">
-        <p>Listen on given port.</p>
+        <p>Get whether a button is pressed.</p>
     </div>
     
 
@@ -344,13 +685,13 @@
 
         <tr>
             
-                <td class="name"><code>port</code></td>
+                <td class="name"><code>button</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type"><a href="Input.Mouse.html#Button">Input.Mouse.Button</a></span>
 
 
             
@@ -360,30 +701,7 @@
 
             
 
-            <td class="description last"><p>The port to listen on.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">listenCallback</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Callback called when connections are accepted.</p></td>
+            <td class="description last"><p>Button.</p></td>
         </tr>
 
 	
@@ -415,7 +733,171 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 43
+        mouse.js, line 62
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true when pressed, false otherwise.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Boolean</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setPosition"><span class="type-signature">&lt;static> </span>setPosition<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Set position of the mouse cursor.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Horizontal position.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Vertical position.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        mouse.js, line 53
     </li></ul></dd>
     
 
@@ -443,151 +925,6 @@
         </dl>
     
 
-    
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        <dl>
-                
-<dt>
-    <h4 class="name" id="listenCallback"><span class="type-signature"></span>listenCallback<span class="signature">(error, peer)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Callback used when clients are connecting to an open port.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>error</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Error message, or null if no error.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>peer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Socket</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The socket to the peer. It is already open.</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        network.js, line 166
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-            </dl>
     
 
     
