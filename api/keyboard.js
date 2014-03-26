@@ -24,16 +24,14 @@
  */
 
 /**
- * @namespace FileSystem
+ * @class Keyboard
  * @author Jos Kuijpers (Rahkiin)
+ * @memberof Input
  */
 
 /**
- * Rename or move a file or directory.
+ * A not-key.
  *
  * @static
- * @param {String} path - Current path.
- * @param {String} newPath - New path.
  */
-FileSystem.rename = function(path, newPath) {
-}
+Input.Keyboard.KEY_NONE = 0;

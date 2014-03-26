@@ -23,17 +23,25 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 /**
- * @namespace FileSystem
+ * @namespace System
  * @author Jos Kuijpers (Rahkiin)
  */
 
 /**
- * Rename or move a file or directory.
+ * Abort the current game with a message.
  *
- * @static
- * @param {String} path - Current path.
- * @param {String} newPath - New path.
+ * @param {String} msg - Message to show after abort.
+ * @noreturn
  */
-FileSystem.rename = function(path, newPath) {
+System.abort = function(msg) {
+}
+
+/**
+ * Exit the game unconditionally.
+ *
+ * @noreturn
+ */
+System.exit = function() {
 }

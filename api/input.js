@@ -24,16 +24,14 @@
  */
 
 /**
- * @namespace FileSystem
+ * @namespace Input
  * @author Jos Kuijpers (Rahkiin)
  */
 
+
 /**
- * Rename or move a file or directory.
- *
+ * An array of gamepads. Each element is an Input.Gamepad.
+ * @type {Array.<Input.Gamepad>}
  * @static
- * @param {String} path - Current path.
- * @param {String} newPath - New path.
  */
-FileSystem.rename = function(path, newPath) {
-}
+Input.gamepads = [];

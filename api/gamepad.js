@@ -22,18 +22,82 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+ 
 /**
- * @namespace FileSystem
  * @author Jos Kuijpers (Rahkiin)
  */
 
 /**
- * Rename or move a file or directory.
+ * Create a new gamepad.
  *
- * @static
- * @param {String} path - Current path.
- * @param {String} newPath - New path.
+ * This constructor should not be used: instead, get a gamepad
+ * from the Input.gamepads array.
+ * 
+ * @constructor
+ * @memberof Input 
  */
-FileSystem.rename = function(path, newPath) {
+Input.Gamepad = function() {
+	/**
+	 * The number of buttons.
+	 *
+	 * @readonly
+	 */
+	this.numberOfButtons = 0;
+	
+	/**
+	 * The number of axis.
+	 *
+	 * @readonly
+	 */
+	this.numberOfAxis = 0;
+	
+	/**
+	 * The button to activate talk.
+	 */
+	this.talkActivationButton = 0;
 }
+
+/**
+ * Get the value of the specified axis.
+ *
+ * @param {Input.Gamepad.Axis} axis - The axis: one of the Gamepad.Axis enum.
+ * @return {Number} Value of the axis.
+ */
+Input.Gamepad.prototype.getAxis = function(axis) {
+	
+}
+
+
+/**
+ * Get the whether specified button is pressed.
+ *
+ * @param {Input.Gamepad.Button} button - The button: one of the Gamepad.Button enum.
+ * @return {Boolean} true when the button is pressed, false otherwise.
+ */
+Input.Gamepad.prototype.isButtonPressed = function(button) {
+	
+}
+
+/**
+ * Enum for gamepad axes
+ *
+ * @readonly
+ * @enum {Number}
+ */
+Input.Gamepad.Axis = {
+	NONE: 0,
+	X: 1,
+	Y: 2	
+};
+
+/**
+ * Enum for gamepad buttons.
+ *
+ * @readonly
+ * @enum {Number}
+ */
+Input.Gamepad.Button = {
+	NONE: 0,
+	A: 1
+};
+

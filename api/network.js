@@ -48,8 +48,7 @@ Network.localName = "localhost";
  * @param {Number} port - The port to listen on.
  * @param {listenCallback} callback - Callback called when connections are accepted.
  */
-Network.listenOnPort(port,callback)
-{
+Network.listenOnPort = function(port,callback) {
 }
 
 /**
@@ -60,8 +59,7 @@ Network.listenOnPort(port,callback)
  * @param {String} [domain=local] - Domain to make the service available to.
  * @returns {boolean} true on success, false on failure.
  */
-Network.Bonjour = function(type, domain)
-{
+Network.Bonjour = function(type, domain) {
 	/** @member {String} */
 	this.type = type || "_game._tcp";
 	/** @member {String} */
@@ -76,8 +74,7 @@ Network.Bonjour = function(type, domain)
  * to use the local computer name.
  * @param {publishCallback} [callback] - Callback to retrieve status.
  */
-Network.Bonjour.prototype.publish = function(port, name, callback)
-{
+Network.Bonjour.prototype.publish = function(port, name, callback) {
 }
 
 /**
@@ -85,8 +82,7 @@ Network.Bonjour.prototype.publish = function(port, name, callback)
  *
  * @param {discoverCallback} callback - Callback called when a peer is found.
  */
-Network.Bonjour.prototype.discover = function(callback)
-{
+Network.Bonjour.prototype.discover = function(callback) {
 }
 
 /**
@@ -100,8 +96,7 @@ Network.Bonjour.prototype.discover = function(callback)
  * @param {resolveCallback} callback - Callback called when a hostname+port
  * combination is found.
  */
-Network.Bonjour.prototype.resolve = function(name, callback)
-{
+Network.Bonjour.prototype.resolve = function(name, callback) {
 }
 
 /**
@@ -111,8 +106,7 @@ Network.Bonjour.prototype.resolve = function(name, callback)
  * After this call, you can still call resolve() again to re-resolve
  * a peer.
  */
-Network.Bonjour.prototype.stop = function()
-{
+Network.Bonjour.prototype.stop = function() {
 }
 
 /**
@@ -131,8 +125,7 @@ Network.Bonjour.prototype.stop = function()
  * @param {resolveCallback} callback - Callback called when a hostname+port
  * combination is found.
  */
-Network.Bonjour.Peer.prototype.resolve = function(callback)
-{
+Network.Bonjour.Peer.prototype.resolve = function(callback) {
 }
 
 /**
@@ -140,8 +133,7 @@ Network.Bonjour.Peer.prototype.resolve = function(callback)
  *
  * @returns {Socket} A new socket. Call connect() to connect it to the peer.
  */
-Network.Bonjour.Peer.prototype.getSocket = function()
-{
+Network.Bonjour.Peer.prototype.getSocket = function() {
 }
 
 /**
@@ -158,7 +150,7 @@ Network.Bonjour.Peer.prototype.getSocket = function()
  * @callback discoverCallback
  * @memberof Network.Bonjour
  * @param {String} error - Error message or null.
- * @param {Bonjour.Peer} peer - The new peer or null.
+ * @param {Network.Bonjour.Peer} peer - The new peer or null.
  */
 
 /**
