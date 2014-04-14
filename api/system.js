@@ -30,6 +30,30 @@
  */
 
 /**
+ * Get the version number of the engine.
+ * @static
+ */
+System.version = 1; // 00.00.01
+
+/**
+ * Get the version string of the engine.
+ * @static
+ */
+System.versionString = "Sphere Pegasus 0.0.1";
+
+/**
+ * An array of extensions of type System.Extension.
+ *
+ * The key is the extension point. This is also the string used
+ * when importing the module using require().
+ *
+ * @static
+ */
+System.extensions = {
+	"sqlite" : null
+}
+
+/**
  * Abort the current game with a message.
  *
  * @param {String} msg - Message to show after abort.
@@ -45,3 +69,49 @@ System.abort = function(msg) {
  */
 System.exit = function() {
 }
+
+/**
+ * Get the resolved path of a resource, relative to the
+ * the engine or user directory (/ or ~/).
+ *
+ * This function should use relative paths, because otherwise it
+ * would be useless with File().
+ *
+ * @param {String} query - The resource query.
+ * @param {String} [extension=] - The default extension.
+ * @param {String} [folder=] - The default folder.
+ */
+System.resolve = function(query,extension,folder) {
+}
+
+/**
+ * Try to run the garbage collector.
+ *
+ * @warning Only use while debugging and use at own risk.
+ */
+System.Debug.garbageCollect() {
+}
+
+/**
+ * Name of the extension.
+ */
+System.Extension.prototype.name = "SQLite";
+
+/**
+ * Version number of the extension.
+ */
+System.Extension.prototype.version = 1;
+
+/**
+ * Version string  of the extension.
+ */
+System.Extension.prototype.versionString = "SQLite 0.0.1";
+
+/**
+ * Get the functionality description of the extension.
+ *
+ * This description is per-extension and can be used to provide
+ * information about the functionalities of the plugin,
+ * such as whether a specific action is available in this version.
+ */
+System.Extension.prototype.functionalityDescription = {};
