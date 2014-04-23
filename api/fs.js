@@ -117,6 +117,7 @@ exports.sha256 = function (path) {
  * Using 'new Directory()' does NOT create a new directory
  * on the file system. Use fs.makeDirectory() instead.
  *
+ * @constructor
  * @param {String} path - Path of the existing directory.
  */
 function Directory(path) {
@@ -168,6 +169,7 @@ exports.Directory = Directory;
  *
  * The file is created, if non-existent, in a call to save().
  *
+ * @constructor
  * @param {String} path - Path of the file.
  */
 function File(path) {
