@@ -25,7 +25,7 @@
 
 
 /**
- * @namespace Console
+ * @module console
  * @author Jos Kuijpers (Rahkiin)
  */
 
@@ -36,7 +36,7 @@
  * arguments are joined together with spaces.
  * @noreturn
  */
-Console.log = function(fmt) {
+exports.log = function(fmt) {
 }
 
 /**
@@ -48,6 +48,5 @@ Console.log = function(fmt) {
  * arguments are joined together with spaces.
  * @noreturn
  */
-Console.error = function(fmt) {
+exports.error = function(fmt) {
 }
-

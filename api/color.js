@@ -24,6 +24,7 @@
  */
 
 /**
+ * @module graphics/color
  * @author Jos Kuijpers (Rahkiin)
  */
 
@@ -31,9 +32,9 @@
  * Create a new color.
  *
  * @constructor
- * @param {Number} r - Red value, ranging 0.0 to 1.0.
- * @param {Number} g - Green value, ranging 0.0 to 1.0.
- * @param {Number} b - Blue value, ranging 0.0 to 1.0.
+ * @param {Number} r - Red value, ranging 0 to 255.
+ * @param {Number} g - Green value, ranging 0 to 255.
+ * @param {Number} b - Blue value, ranging 0 to 255.
  * @param {Number} [a=1.0] - Alpha value, ranging 0.0 to 1.0.
  */
 function Color(r,g,b,a) {
@@ -47,8 +48,9 @@ function Color(r,g,b,a) {
 	this.blue = b;
 	
 	/** Alpha value. */
-	this.alpha = a;
+	this.alpha = a || 1.0;
 }
+exports = Color;
 
 /**
  * Blend the color evenly with specified color.
@@ -71,86 +73,86 @@ Color.prototype.blendWeighted = function(color,weight1,weight2) {
 }
 
 /**
- * Red color: (1.0, 0.0, 0.0)
+ * Red color: (255, 0, 0)
  *
  * @const
  */
-Color.RED = new Color(1.0,0,0);
+exports.RED = new Color(255,0);
 
 /**
- * Green color: (0.0, 1.0, 0.0)
+ * Green color: (0, 255, 0)
  *
  * @const
  */
-Color.GREEN = new Color(0,1.0,0);
+exports.GREEN = new Color(0,255);
 
 /**
- * Blue color: (0.0, 0.0, 1.0)
+ * Blue color: (0, 0, 255)
  *
  * @const
  */
-Color.BLUE = new Color(0,0,1.0);
+exports.BLUE = new Color(0,255);
 
 /**
- * Black color: (0.0, 0.0, 0.0)
+ * Black color: (0, 0, 0)
  *
  * @const
  */
-Color.BLACK = new Color(0,0,0);
+exports.BLACK = new Color(0,0);
 
 /**
- * Gray color: (0.5, 0.5, 0.5)
+ * Gray color: (127, 127, 127)
  *
  * @const
  */
-Color.GRAY = new Color(0.5,0.5,0.5);
+exports.GRAY = new Color(127,127,127);
 
 /**
- * Dark gray color: (0.333, 0.333, 0.333)
+ * Dark gray color: (85, 85, 85)
  *
  * @const
  */
-Color.DARKGRAY = new Color(0.333,0.333,0.333);
+exports.DARKGRAY = new Color(85,85,85);
 
 /**
- * Light gray color: (0.667, 0.667, 0.667)
+ * Light gray color: (170, 170, 170)
  *
  * @const
  */
-Color.LIGHTGRAY = new Color(0.667,0.667,0.667);
+exports.LIGHTGRAY = new Color(170,170,170);
 
 /**
- * Black color: (0.0, 0.0, 0.0)
+ * Black color: (0, 0, 0)
  *
  * @const
  */
-Color.BLACK = new Color(0,0,0);
+exports.BLACK = new Color(0,0);
 
 
 /**
- * White color: (1.0, 1.0, 1.0)
+ * White color: (255, 255, 255)
  *
  * @const
  */
-Color.WHITE = new Color(1.0,1.0,1.0);
+exports.WHITE = new Color(255,255,255);
 
 /**
- * Yellow color: (1.0, 1.0, 0.0)
+ * Yellow color: (255, 255, 0)
  *
  * @const
  */
-Color.YELLOW = new Color(1.0,1.0,0);
+exports.YELLOW = new Color(255,255);
 
 /**
- * Purple color: (1.0, 0.0, 1.0)
+ * Purple color: (255, 0, 255)
  *
  * @const
  */
-Color.PURPLE = new Color(1.0,0,1.0);
+exports.PURPLE = new Color(255,255);
 
 /**
- * Cyan color: (0.0, 1.0, 1.0)
+ * Cyan color: (0, 255, 255)
  *
  * @const
  */
-Color.CYAN = new Color(0,1.0,1.0);
+exports.CYAN = new Color(0,255,255);

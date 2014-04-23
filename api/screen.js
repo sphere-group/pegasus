@@ -24,7 +24,7 @@
  */
 
 /**
- * @namespace Screen
+ * @module graphics/screen
  * @author Jos Kuijpers (Rahkiin)
  */
 
@@ -34,5 +34,5 @@
  * @param {Number} width - Width in pixels.
  * @param {Number} height - Height in pixels.
  */
-Screen.setSize = function(width, height) {
+exports.setSize = function(width, height) {
 }

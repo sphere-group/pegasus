@@ -23,7 +23,6 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 /**
  * @namespace System
  * @author Jos Kuijpers (Rahkiin)
@@ -82,14 +81,6 @@ System.exit = function() {
  * @param {String} [folder=] - The default folder.
  */
 System.resolve = function(query,extension,folder) {
-}
-
-/**
- * Try to run the garbage collector.
- *
- * @warning Only use while debugging and use at own risk.
- */
-System.Debug.garbageCollect() {
 }
 
 /**

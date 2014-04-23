@@ -24,16 +24,6 @@
  */
 
 /**
- * @namespace FileSystem
+ * @class SQLite
  * @author Jos Kuijpers (Rahkiin)
  */
-
-/**
- * Rename or move a file or directory.
- *
- * @static
- * @param {String} path - Current path.
- * @param {String} newPath - New path.
- */
-FileSystem.rename = function(path, newPath) {
-}
