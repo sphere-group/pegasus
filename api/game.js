@@ -24,27 +24,32 @@
  */
 
 /**
- * @namespace Game
+ * @module game
  * @author Jos Kuijpers (Rahkiin)
  */
 
+var _callbacks = {};
+
 /**
  * Name of current game.
- * @static
+ *
+ * @type {String}
  */
-Game.name = "";
+exports.name = "";
 
 /**
  * Description of current game.
- * @static
+ *
+ * @type {String}
  */
-Game.description = "";
+exports.description = "";
 
 /**
  * Author of current game.
- * @static
+ *
+ * @type {String}
  */
-Game.author = "";
+exports.author = "";
 
 /**
  * Add a new callback for specified event.
@@ -52,10 +57,10 @@ Game.author = "";
  * @param {String} event - The name of the event.
  * @param {Function} callback - The callback function.
  */
-Game.on = function(event, callback) {
-	if(Game._callbacks[event] == null)
-		Game._callbacks[event] = [];
-	Game._callbacks[event].push(callback);
+exports.on = function(event, callback) {
+	if(_callbacks[event] == null)
+		_callbacks[event] = [];
+	_callbacks[event].push(callback);
 }
 
 /**
@@ -64,9 +69,14 @@ Game.on = function(event, callback) {
  * @param {String} event - The name of the event.
  * @param {Array} arguments - The arguments to the callback.
  */
-Game.trigger = function(event, arguments) {
-	for(var cb in Game._callbacks[event])
-		Game._events[event].push(arguments);
+exports.trigger = function(event, arguments) {
+	var engine = require("engine");
+
+	for(var cb in _callbacks[event]) {
+		engine.dispatch(function () {
+			cb.call(arguments);
+		});
+	}
 }
 
 /*

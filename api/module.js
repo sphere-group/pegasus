@@ -22,16 +22,3 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-/**
- * @class Keyboard
- * @author Jos Kuijpers (Rahkiin)
- * @memberof Input
- */
-
-/**
- * A not-key.
- *
- * @static
- */
-Input.Keyboard.KEY_NONE = 0;

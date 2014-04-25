@@ -77,28 +77,28 @@ Color.prototype.blendWeighted = function(color,weight1,weight2) {
  *
  * @const
  */
-exports.RED = new Color(255,0);
+exports.RED = new Color(255,0,0);
 
 /**
  * Green color: (0, 255, 0)
  *
  * @const
  */
-exports.GREEN = new Color(0,255);
+exports.GREEN = new Color(0,255,0);
 
 /**
  * Blue color: (0, 0, 255)
  *
  * @const
  */
-exports.BLUE = new Color(0,255);
+exports.BLUE = new Color(0,0,255);
 
 /**
  * Black color: (0, 0, 0)
  *
  * @const
  */
-exports.BLACK = new Color(0,0);
+exports.BLACK = new Color(0,0,0);
 
 /**
  * Gray color: (127, 127, 127)
@@ -121,13 +121,6 @@ exports.DARKGRAY = new Color(85,85,85);
  */
 exports.LIGHTGRAY = new Color(170,170,170);
 
-/**
- * Black color: (0, 0, 0)
- *
- * @const
- */
-exports.BLACK = new Color(0,0);
-
 
 /**
  * White color: (255, 255, 255)
@@ -141,14 +134,14 @@ exports.WHITE = new Color(255,255,255);
  *
  * @const
  */
-exports.YELLOW = new Color(255,255);
+exports.YELLOW = new Color(255,255,0);
 
 /**
  * Purple color: (255, 0, 255)
  *
  * @const
  */
-exports.PURPLE = new Color(255,255);
+exports.PURPLE = new Color(255,0,255);
 
 /**
  * Cyan color: (0, 255, 255)

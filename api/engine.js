@@ -22,82 +22,85 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
- 
+
 /**
+ * @module engine
  * @author Jos Kuijpers (Rahkiin)
  */
 
 /**
- * Create a new gamepad.
- *
- * This constructor should not be used: instead, get a gamepad
- * from the Input.gamepads array.
- * 
- * @constructor
- * @memberof Input 
- */
-Input.Gamepad = function() {
-	/**
-	 * The number of buttons.
-	 *
-	 * @readonly
-	 */
-	this.numberOfButtons = 0;
-	
-	/**
-	 * The number of axis.
-	 *
-	 * @readonly
-	 */
-	this.numberOfAxis = 0;
-	
-	/**
-	 * The button to activate talk.
-	 */
-	this.talkActivationButton = 0;
-}
-
-/**
- * Get the value of the specified axis.
- *
- * @param {Input.Gamepad.Axis} axis - The axis: one of the Gamepad.Axis enum.
- * @return {Number} Value of the axis.
- */
-Input.Gamepad.prototype.getAxis = function(axis) {
-	
-}
-
-
-/**
- * Get the whether specified button is pressed.
- *
- * @param {Input.Gamepad.Button} button - The button: one of the Gamepad.Button enum.
- * @return {Boolean} true when the button is pressed, false otherwise.
- */
-Input.Gamepad.prototype.isButtonPressed = function(button) {
-	
-}
-
-/**
- * Enum for gamepad axes
+ * Get the version number of the engine.
  *
  * @readonly
- * @enum {Number}
+ * @type {Number}
  */
-Input.Gamepad.Axis = {
-	NONE: 0,
-	X: 1,
-	Y: 2	
+exports.version = 1; // 00.00.01
+
+/**
+ * Get an object with version strings for the engine
+ * and its dependencies.
+ *
+ * @readonly
+ * @type {Object}
+ */
+exports.versions = {
+	"sphere": "2.0.0",
+	"spidermonkey": "1.8"
 };
 
 /**
- * Enum for gamepad buttons.
+ * The main module.
  *
  * @readonly
- * @enum {Number}
+ * @type {Module}
  */
-Input.Gamepad.Button = {
-	NONE: 0,
-	A: 1
+exports.mainModule = null;
+
+/**
+ * An array of loaded extensions.
+ *
+ * The key is the extension point. This is also the string used
+ * when importing the module using require().
+ *
+ * @static
+ */
+exports.extensions = []
+	"sqlite"
+];
+
+/**
+ * Abort the current game with a message.
+ *
+ * @param {String} msg - Message to show after abort.
+ * @noreturn
+ */
+exports.abort = function(msg) {
 };
 
+/**
+ * Exit the game unconditionally.
+ *
+ * @noreturn
+ */
+exports.exit = function() {
+};
+
+/**
+ * Restart the engine.
+ *
+ * @noreturn
+ */
+exports.restart = function() {
+};
+
+/**
+ * Put the specified function onto the dispatch queue,
+ * to be executed in an upcoming cycle.
+ *
+ * Use this to assert execution order when mixing
+ * sync and async functionality. Or to minimize frame-lag.
+ *
+ * @param {Function} fn - The function to execute.
+ */
+exports.dispatch = function(fn) {
+};
