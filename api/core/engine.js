@@ -34,7 +34,7 @@
  * @readonly
  * @type {Number}
  */
-exports.version = 1; // 00.00.01
+exports.version = 20000; // 02.00.00
 
 /**
  * Get an object with version strings for the engine
@@ -64,7 +64,7 @@ exports.mainModule = null;
  *
  * @static
  */
-exports.extensions = []
+exports.extensions = [
 	"sqlite"
 ];
 
