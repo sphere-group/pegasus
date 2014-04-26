@@ -206,7 +206,11 @@ Mouse.Button = {
 	/** First extra mouse button. */ 
 	EXTRA1: 4,
 	/** Second extra mouse button. */ 
-	EXTRA2: 5
+	EXTRA2: 5,
+	/** The primary mouse button. */
+	PRIMARY: LEFT,
+	/** The secondary mouse button. */
+	SECONDARY: RIGHT
 };
 
 /**
@@ -250,3 +254,11 @@ Mouse.Wheel.Event = {
 	/** Scroll right event. */
 	RIGHT: 4
 };
+
+/*
+ * TODO
+ * Mouse events: 'buttondown','buttonup','click'
+ * Mouse Wheel events: 'scroll'
+ * Keyboard events: 'keydown','keyup'
+ * Gamepad events: 'buttondown', 'buttonup'
+ */
