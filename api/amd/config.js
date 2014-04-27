@@ -28,3 +28,5 @@
  * @author Jos Kuijpers (Rahkiin)
  */
 
+exports.load = function() {
+};
