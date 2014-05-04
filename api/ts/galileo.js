@@ -33,12 +33,13 @@
 
 /**
  * @module galileo
- * @author Martin McDonough - FlyingJester
+ * @author Martin McDonough (FlyingJester)
  */
 
 /**
  * The basic unit of Galileo primitives.
  * All drawing requires any form to be constructed of vertices.
+ *
  * @constructor
  * @param {Number} x - The X coordinate of the vertex.
  * @param {Number} y - The Y coordinate of the vertex.
@@ -56,6 +57,7 @@ function Vertex(x, y, color){
  * The superclass of all primitives. It consists of a series of
  * Vertices, a texture represented as an Image, and a series of
  * transformations.
+ *
  * @constructor
  * @param {Array} vertices - Vertices to become part of the Shape. Each
  * Vertex must be unique to this particular Shape. This restriction may
@@ -67,14 +69,14 @@ function Shape(vertices, texture){
 
     /**
      * A list of vertices in the Shape.
-     * @memberof Shape
+     *
      * @type {Array}
      */
     this.vertices = vertices;
 
     /**
      * The texture to use when drawing the shape.
-     * @memberof Shape
+     *
      * @type {Image}
      */
 
@@ -82,7 +84,7 @@ function Shape(vertices, texture){
 
     /**
      * The rotation angle of the Shape.
-     * @memberof Shape
+     *
      * @type {Number}
      */
 
@@ -91,7 +93,7 @@ function Shape(vertices, texture){
     /**
      * The offset from the origin to draw the shape. It is added to the
      * coordinates of each Vertex when the shape is draw.
-     * @memberof Shape
+     *
      * @type {Object}
      */
 
@@ -102,7 +104,7 @@ function Shape(vertices, texture){
 
     /**
      * The offset to rotate the Shape on.
-     * @memberof Shape
+     *
      * @type {Object}
      */
 
@@ -114,6 +116,7 @@ function Shape(vertices, texture){
     /**
      * The group that owns the Shape.
      * If this is null, the Shape is owned by the global group.
+     *
      * @type {Object}
      * @readonly
      */
@@ -123,8 +126,8 @@ function Shape(vertices, texture){
     /**
      * Draws the Shape. This should only ever be used if the Shape
      * belongs to the global Group. Otherwise, behaviour is undefined.
+     *
      * @function
-     * @memberof Shape
      */
 
     this.draw = function(){
@@ -136,20 +139,21 @@ function Shape(vertices, texture){
  * Groups Shapes together into a single drawing operation.
  * They also allow single transformation operations to be applied to all
  * every Shape in the group.
+ *
  * @constructor
  * @param {Array} shapes - An array of Shapes to assign to the group.
  */
 function Group(shapes){
     /**
      * Holds an array of all the Shapes the Group holds.
-     * @memberof Group
+     *
      * @type {Array}
      */
     this.shapes = shapes;
 
     /**
      * Specifies the offset from the origin to draw the group by.
-     * @memberof Group
+     *
      * @type {Object}
      */
 
@@ -160,7 +164,7 @@ function Group(shapes){
 
     /**
      * Specifies the angle of rotation to apply when drawing the Group.
-     * @memberof Group
+     *
      * @type {Number}
      */
 
@@ -168,7 +172,7 @@ function Group(shapes){
 
     /**
      * Specifies the offset to rotate the Group by.
-     * @memberof Group
+     *
      * @type {Object}
      */
 
@@ -179,8 +183,8 @@ function Group(shapes){
 
     /**
      * Draws all the Shapes in the Groups.
+     *
      * @function
-     * @memberof {Group}
      */
 
     this.draw = function(){
