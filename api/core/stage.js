@@ -31,7 +31,7 @@
 var Manager = require("stagemanager.js");
 
 /**
- * Create a new color.
+ * Create a new stage.
  *
  * @constructor
  * @param {String} name - The name of the stage for logging/id/debug purposes.
