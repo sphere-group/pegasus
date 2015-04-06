@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014 The Sphere Team. All rights reserved.
+* Copyright (c) 2015 The Sphere Team. All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions
@@ -43,20 +43,24 @@
  * @constructor
  * @param {Number} x - The X coordinate of the vertex.
  * @param {Number} y - The Y coordinate of the vertex.
- * @param {Color} color - The color mask of the vertex. The texture
- * source color will be multiply-masked with this.
+ * @param {Color} color - Optional color mask of the vertex. If not 
+ * supplied, it will default to red 255, green 255, blue 255, alpha 255.
+ * a Shape's Texture source color will be multiply-masked with this.
+ * @param {Number} u - Optional U coordinate for texture mapping
+ * @param {Number} v - Optional V coordinate for texture mapping
  */
 
-function Vertex(x, y, color){
+function Vertex(x, y, color, u, v){
     this.x = x;
     this.y = y;
+    this.u = u;
+    this.v = v;
     this.color = color;
 }
 
 /**
  * The superclass of all primitives. It consists of a series of
- * Vertices, a texture represented as an Image, and a series of
- * transformations.
+ * Vertices and a texture represented as an Image.
  *
  * @constructor
  * @param {Array} vertices - Vertices to become part of the Shape. Each
@@ -80,58 +84,7 @@ function Shape(vertices, texture){
      * @type {Image}
      */
 
-    this.texture = texture;
-
-    /**
-     * The rotation angle of the Shape.
-     *
-     * @type {Number}
-     */
-
-    this.angle = 0.0;
-
-    /**
-     * The offset from the origin to draw the shape. It is added to the
-     * coordinates of each Vertex when the shape is draw.
-     *
-     * @type {Object}
-     */
-
-    this.offset = {
-        "x":0,
-        "y":0,
-    };
-
-    /**
-     * The offset to rotate the Shape on.
-     *
-     * @type {Object}
-     */
-
-    this.rotationOffset = {
-        "x":0,
-        "y":0,
-    };
-
-    /**
-     * The group that owns the Shape.
-     * If this is null, the Shape is owned by the global group.
-     *
-     * @type {Object}
-     * @readonly
-     */
-
-    this.group = null;
-
-    /**
-     * Draws the Shape. This should only ever be used if the Shape
-     * belongs to the global Group. Otherwise, behaviour is undefined.
-     *
-     * @function
-     */
-
-    this.draw = function(){
-    };
+    this.image = image;
 
 }
 
@@ -142,8 +95,9 @@ function Shape(vertices, texture){
  *
  * @constructor
  * @param {Array} shapes - An array of Shapes to assign to the group.
+ * @param {Object} shader - The ShaderProgram to use to draw this group using.
  */
-function Group(shapes){
+function Group(shapes, shader){
     /**
      * Holds an array of all the Shapes the Group holds.
      *
@@ -152,15 +106,20 @@ function Group(shapes){
     this.shapes = shapes;
 
     /**
-     * Specifies the offset from the origin to draw the group by.
+     * Specifies the X offset from the origin to draw the group by.
      *
-     * @type {Object}
+     * @type {Number}
      */
+    
+    this.x = 0;
 
-    this.offset = {
-        "x":0,
-        "y":0,
-    };
+    /**
+     * Specifies the Y offset from the origin to draw the group by.
+     *
+     * @type {Number}
+     */
+    
+    this.y = 0;
 
     /**
      * Specifies the angle of rotation to apply when drawing the Group.
@@ -171,15 +130,20 @@ function Group(shapes){
     this.angle = 0.0;
 
     /**
-     * Specifies the offset to rotate the Group by.
+     * Specifies the X offset from the origin to rotate the Group around.
      *
-     * @type {Object}
+     * @type {Number}
      */
 
-    this.rotationOffset = {
-        "x":0,
-        "y":0,
-    };
+    this.rotX = 0;
+
+    /**
+     * Specifies the Y offset from the origin to rotate the Group around.
+     *
+     * @type {Number}
+     */
+
+    this.rotY = 0;
 
     /**
      * Draws all the Shapes in the Groups.
@@ -190,4 +154,20 @@ function Group(shapes){
     this.draw = function(){
     };
 
+    /**
+     * Specifies the ShaderProgram to draw this group with.
+     *
+     * @type {Object}
+     */
+
+    this.shader = {};
+
+}
+
+/** 
+ * Creates a ShaderProgram that allows the use of raster coordinates, with
+ * the origin at the upper left corner of the screen.
+ * Implementations may provide other methods of creating custom a ShaderProgram.
+ */
+function GetDefaultShaderProgram(){
 }
