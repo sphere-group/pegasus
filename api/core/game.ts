@@ -28,25 +28,35 @@
  * @author Jos Kuijpers (Rahkiin)
  */
 
-var _callbacks = {};
+export default class Game {
 
-/**
- * Name of current game.
- *
- * @type {String}
- */
-exports.name = "";
+    /**
+     * Name of current game.
+     *
+     * @type {String}
+     */
+    public static name: string = "";
 
-/**
- * Description of current game.
- *
- * @type {String}
- */
-exports.description = "";
+    /**
+     * Description of current game.
+     *
+     * @type {String}
+     */
+    private description: string = "";
 
-/**
- * Author of current game.
- *
- * @type {String}
- */
-exports.author = "";
+    /**
+     * Author of current game.
+     *
+     * @type {String}
+     */
+    private author: string = "";
+
+    /**
+     * Quit the game with given object.
+     *
+     * @param  {Any?} object Exit object
+     */
+    public static quit(object?): void {
+
+    }
+}
