@@ -93,7 +93,7 @@ export default class Engine {
      * @param {String} msg - Message to show after abort.
      * @noreturn
      */
-    public static abort(msg) {
+    public static abort(msg?: string): void {
     }
 
     /**
@@ -101,7 +101,7 @@ export default class Engine {
      *
      * @noreturn
      */
-    public static exit() {
+    public static exit(): void {
     }
 
     /**
@@ -109,6 +109,6 @@ export default class Engine {
      *
      * @noreturn
      */
-    public static restart() {
+    public static restart(): void {
     }
 }

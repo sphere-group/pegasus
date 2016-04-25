@@ -150,7 +150,7 @@ export class Sound {
 	 *
 	 * @param {Mixer} mixer - The mixer which will used to play the sound.
 	 */
-	public play(mixer) {
+	public play(mixer): void {
 		this.mixer = mixer;
 		this.playing = true;
 	}
@@ -162,7 +162,7 @@ export class Sound {
 	 *
 	 * @param {Boolean} paused - true to pause, false to resume.
 	 */
-	public pause(paused) {
+    public pause(paused): void {
 		this.playing = !paused;
 	}
 
@@ -172,7 +172,7 @@ export class Sound {
 	 * Seek position is reset to 0.0s so that the next play() will start at the
 	 * beginning.
 	 */
-	public stop() {
+    public stop(): void {
 		this.playing = false;
 		this.position = 0.0;
 		this.mixer = null;
@@ -259,8 +259,8 @@ export class SoundStream {
 	 *
 	 * @param {ArrayBuffer} data - An ArrayBuffer containing the sound data to buffer.
 	 */
-    public buffer(data)
+    public buffer(data: ArrayBuffer): void
 	{
-		this.bufferSize += data.length;
+		this.bufferSize += data.byteLength;
 	}
 }

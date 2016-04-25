@@ -54,9 +54,11 @@ export default class Game {
     /**
      * Quit the game with given object.
      *
+     * This will call the willQuit delegate for a nice and clean shutdown.
+     *
      * @param  {Any?} object Exit object
      */
-    public static quit(object?): void {
+    public static quit(object?: any): void {
 
     }
 }

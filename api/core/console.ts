@@ -29,24 +29,26 @@
  * @author Jos Kuijpers (Rahkiin)
  */
 
-/**
- * Show a log message on the console.
- *
- * @param {String} fmt - Format string if it contains a %. If it does not, all
- * arguments are joined together with spaces.
- * @noreturn
- */
-exports.log = function(fmt) {
-}
+export default class Console {
+    /**
+     * Show a log message on the console.
+     *
+     * @param {any[]} args
+     * arguments are joined together with spaces.
+     * @noreturn
+     */
+    public static log(...args: any[]): void {
+    }
 
-/**
- * Show an error message on the console.
- *
- * The engine does not need to exit.
- *
- * @param {String} fmt - Format string if it contains a %. If it does not, all
- * arguments are joined together with spaces.
- * @noreturn
- */
-exports.error = function(fmt) {
+    /**
+     * Show an error message on the console.
+     *
+     * The engine does not need to exit.
+     *
+     * @param {any[]} args
+     * arguments are joined together with spaces.
+     * @noreturn
+     */
+    public static error(...args: any[]): void {
+    }
 }
