@@ -29,13 +29,6 @@
  */
 
 export default class Engine {
-    /**
-     * Get the version number of the engine.
-     *
-     * @readonly
-     * @type {String}
-     */
-    public static version: string = "2.0.0";
 
     /**
      * Get the API level.
