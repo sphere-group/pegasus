@@ -37,6 +37,24 @@
 exports.version = 20000; // 02.00.00
 
 /**
+ * Get the API level.
+ *
+ * An Android-ish approach.
+ *
+ * @readonly
+ * @type {Number}
+ */
+exports.apiLevel = 2; // 1 is for Sphere 1
+
+/**
+ * Get the name of the engine.
+ *
+ * @readonly
+ * @type {String}
+ */
+exports.name = "minisphere";
+
+/**
  * Get an object with version strings for the engine
  * and its dependencies.
  *
@@ -92,3 +110,4 @@ exports.exit = function() {
  */
 exports.restart = function() {
 };
+
