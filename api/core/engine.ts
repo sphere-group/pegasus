@@ -94,7 +94,7 @@ export default class Engine {
      * @noreturn
      */
     public static abort(msg) {
-    };
+    }
 
     /**
      * Exit the game unconditionally.
@@ -102,7 +102,7 @@ export default class Engine {
      * @noreturn
      */
     public static exit() {
-    };
+    }
 
     /**
      * Restart the engine.
@@ -110,5 +110,5 @@ export default class Engine {
      * @noreturn
      */
     public static restart() {
-    };
+    }
 }

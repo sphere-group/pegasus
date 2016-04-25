@@ -29,46 +29,39 @@
  * @author Bruce Pascoe (Fat Cerberus)
  */
 
-/**
- * Constructs a mixer.
- *
- * Mixers are used for logical grouping of sounds and allow the volume to be
- * set for the entire class.  For example a game might create two mixers:
- * one for music, and the other for sound effects.
- *
- * @constructor
- * @param {Number} frequency - The mixing frequency in Hz.
- * @param {Number} bits - The bit depth at which to play sounds.
- * @param {Number} channels - The number of speaker channels supported by the mixer.
- */
-exports.Mixer = function(frequency, bits, channels)
-{
+export class Mixer {
 	/**
 	 * The mixer volume.
 	 *
 	 * The mixer volume is multiplied with the volume of each individual sounds
 	 * to determine how loud each one is.
 	 */
-	this.volume = 1.0;
+    public volume: number = 1.0;
+
+	/**
+	 * Constructs a mixer.
+	 *
+	 * Mixers are used for logical grouping of sounds and allow the volume to be
+	 * set for the entire class.  For example a game might create two mixers:
+	 * one for music, and the other for sound effects.
+	 *
+	 * @constructor
+	 * @param {Number} frequency - The mixing frequency in Hz.
+	 * @param {Number} bits - The bit depth at which to play sounds.
+	 * @param {Number} channels - The number of speaker channels supported by the mixer.
+	 */
+    constructor(public frequency: number, public bits: number, public channels: number) {
+    }
 }
 
-/**
- * Constructs a Sound object, which represents an audio stream backed by a
- * sound file.  Sounds are fully seekable and the engine automatically keeps
- * the stream fed using audio data from the underlying file.
- *
- * @constructor
- * @param {String} path - The path to the sound file, e.g. `sounds/munch.wav`.
- */
-exports.Sound = function(path)
-{
+export class Sound {
 	/**
 	 * The length of the sound in seconds.
 	 *
 	 * @type {Number}
 	 * @readonly
 	 */
-	this.length = 0.0;
+	public length: number = 0.0;
 
 	/**
 	 * The Mixer currently being used to the play the sound. `null` if the
@@ -77,7 +70,7 @@ exports.Sound = function(path)
 	 * @readonly
 	 * @type {Mixer}
 	 */
-	this.mixer = null;
+	public mixer: Mixer = null;
 
 	/**
 	 * The SphereFS path of the sound.
@@ -85,7 +78,7 @@ exports.Sound = function(path)
 	 * @readonly
 	 * @type {String}
 	 */
-	this.path = path;
+	public path: string;
 
 	/**
 	 * Gets or sets the sound's L/R balance.
@@ -94,7 +87,7 @@ exports.Sound = function(path)
 	 *
 	 * @type {Number}
 	 */
-	this.pan = 0.0;
+	public pan: number = 0.0;
 
 	/**
 	 * Whether or not the sound is currently playing.
@@ -102,21 +95,21 @@ exports.Sound = function(path)
 	 * @readonly
 	 * @type {Boolean}
 	 */
-	this.playing = false;
+	public playing: boolean = false;
 
 	/**
 	 * The seek position in the sound, in seconds.
 	 *
 	 * @type {Number}
 	 */
-	this.position = 0.0;
+	public position: number = 0.0;
 
 	/**
 	 * Gets or sets whether the sound will repeat endlessly.
 	 *
 	 * @type {Boolean}
 	 */
-	this.repeat = false;
+	public repeat: boolean = false;
 
 	/**
 	 * Gets or sets the volume of the sound.
@@ -126,7 +119,7 @@ exports.Sound = function(path)
 	 *
 	 * @type {Number}
 	 */
-	this.volume = 1.0;
+	public volume: number = 1.0;
 
 	/**
 	 * Gets or sets the pitch of the sound.
@@ -135,7 +128,19 @@ exports.Sound = function(path)
 	 *
 	 * @type {Number}
 	 */
-	this.pitch = 1.0;
+	public pitch: number = 1.0;
+
+	/**
+	 * Constructs a Sound object, which represents an audio stream backed by a
+	 * sound file.  Sounds are fully seekable and the engine automatically keeps
+	 * the stream fed using audio data from the underlying file.
+	 *
+	 * @constructor
+	 * @param {String} path - The path to the sound file, e.g. `sounds/munch.wav`.
+	 */
+    constructor(path: string) {
+        this.path = path;
+    }
 
 	/**
 	 * Start playback of the sound.
@@ -145,10 +150,10 @@ exports.Sound = function(path)
 	 *
 	 * @param {Mixer} mixer - The mixer which will used to play the sound.
 	 */
-	this.play = function(mixer) {
+	public play(mixer) {
 		this.mixer = mixer;
 		this.playing = true;
-	};
+	}
 
 	/**
 	 * Pauses or resumes playback.
@@ -157,9 +162,9 @@ exports.Sound = function(path)
 	 *
 	 * @param {Boolean} paused - true to pause, false to resume.
 	 */
-	this.pause = function(paused) {
+	public pause(paused) {
 		this.playing = !paused;
-	};
+	}
 
 	/**
 	 * Stops playing the sound.
@@ -167,26 +172,54 @@ exports.Sound = function(path)
 	 * Seek position is reset to 0.0s so that the next play() will start at the
 	 * beginning.
 	 */
-	this.stop = function() {
+	public stop() {
 		this.playing = false;
 		this.position = 0.0;
 		this.mixer = null;
-	};
+	}
 }
 
-/**
- * Constructs a SoundStream object. Unlike a Sound, a SoundStream must be kept
- * fed by user code in order to prevent starvation.
- *
- * @constructor
- * @param {Number} frequency - The sample rate of the sound, in Hz.
- * @param {Number} bits - The bit depth of the stream.  8-bit expects unsigned
- *                        samples, 16- and 24-bit are signed, and 32-bit is floating
- *                        point.
- * @param {Number} channels - The number of speaker channels in the sound.
- */
-exports.SoundStream = function(frequency, bits, channels)
-{
+export class SoundStream {
+	/**
+	 * Gets whether the stream is currently playing.
+	 *
+	 * @readonly
+	 * @type {Boolean}
+	 */
+    public playing: boolean = false;
+
+	/**
+	 * Gets the number of bytes in the stream buffer.
+	 *
+	 * @readonly
+	 * @type {Number}
+	 */
+    public bufferSize: number = 0;
+
+	/**
+	 * The Mixer currently being used to the play the sound. `null` if the
+	 * sound is stopped.
+	 *
+	 * @readonly
+	 * @type {Mixer}
+	 */
+    public mixer: Mixer;
+
+	/**
+	 * Constructs a SoundStream object. Unlike a Sound, a SoundStream must be kept
+	 * fed by user code in order to prevent starvation.
+	 *
+	 * @constructor
+	 * @param {Number} frequency - The sample rate of the sound, in Hz.
+	 * @param {Number} bits - The bit depth of the stream.  8-bit expects unsigned
+	 *                        samples, 16- and 24-bit are signed, and 32-bit is floating
+	 *                        point.
+	 * @param {Number} channels - The number of speaker channels in the sound.
+	 */
+    constructor(public frequency: number, public bits: number, public channels: number) {
+
+    }
+
 	/**
 	 * Begins playing the stream.
 	 *
@@ -195,30 +228,30 @@ exports.SoundStream = function(frequency, bits, channels)
 	 *
 	 * @param {Mixer} mixer - The mixer to use to play the sound.
 	 */
-	this.play = function(mixer)
+	public play(mixer: Mixer): void
 	{
 		this.playing = true;
 		this.mixer = mixer;
-	};
+	}
 
 	/**
 	 * Pauses or resumes playback.
 	 *
 	 * Has no effect is playback is stopped.
 	 */
-	this.pause = function(paused)
+	public pause(paused: boolean): void
 	{
 		this.playing = !paused && this.mixer != null;
-	};
+	}
 
 	/**
 	 * Drains the stream buffer and stops playback.
 	 */
-	this.stop = function()
+	public stop(): void
 	{
 		this.playing = false;
 		this.mixer = null;
-	};
+	}
 
 	/**
 	 * Writes sound data to the stream buffer. The format expected depends on
@@ -226,24 +259,8 @@ exports.SoundStream = function(frequency, bits, channels)
 	 *
 	 * @param {ArrayBuffer} data - An ArrayBuffer containing the sound data to buffer.
 	 */
-	this.buffer = function(data)
+    public buffer(data)
 	{
 		this.bufferSize += data.length;
 	}
-
-	/**
-	 * Gets whether the stream is currently playing.
-	 *
-	 * @readonly
-	 * @type {Boolean}
-	 */
-	this.playing = false;
-
-	/**
-	 * Gets the number of bytes in the stream buffer.
-	 *
-	 * @readonly
-	 * @type {Number}
-	 */
-	this.bufferSize = 0;
 }
