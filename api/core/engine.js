@@ -92,15 +92,3 @@ exports.exit = function() {
  */
 exports.restart = function() {
 };
-
-/**
- * Put the specified function onto the dispatch queue,
- * to be executed in an upcoming cycle.
- *
- * Use this to assert execution order when mixing
- * sync and async functionality. Or to minimize frame-lag.
- *
- * @param {Function} fn - The function to execute.
- */
-exports.dispatch = function(fn) {
-};

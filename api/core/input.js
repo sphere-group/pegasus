@@ -43,7 +43,7 @@ exports.gamepads = [];
  *
  * This constructor should not be used: instead, get a gamepad
  * from the Input.gamepads array.
- * 
+ *
  * @constructor
  */
 function Gamepad() {
@@ -53,14 +53,14 @@ function Gamepad() {
 	 * @readonly
 	 */
 	this.numberOfButtons = 0;
-	
+
 	/**
 	 * The number of axis.
 	 *
 	 * @readonly
 	 */
 	this.numberOfAxis = 0;
-	
+
 	/**
 	 * The button to activate talk.
 	 */
@@ -72,7 +72,7 @@ function Gamepad() {
 	 * @param {Input.Gamepad.Axis} axis - The axis: one of the Gamepad.Axis enum.
 	 * @return {Number} Value of the axis.
 	 */
-	this.getAxis = function(axis) {	
+	this.getAxis = function(axis) {
 	};
 
 	/**
@@ -100,7 +100,7 @@ Gamepad.Axis = {
 	/** The X axis */
 	X: 1,
 	/** The Y axis */
-	Y: 2	
+	Y: 2
 };
 
 /**
@@ -197,15 +197,15 @@ Mouse.isButtonpressed = function(button) {
 Mouse.Button = {
 	/** No button. */
 	NONE: 0,
-	/** Left mouse button. */ 
+	/** Left mouse button. */
 	LEFT: 1,
-	/** Right mouse button. */ 
+	/** Right mouse button. */
 	RIGHT: 2,
-	/** Middle mouse button. */ 
+	/** Middle mouse button. */
 	MIDDLE: 3,
-	/** First extra mouse button. */ 
+	/** First extra mouse button. */
 	EXTRA1: 4,
-	/** Second extra mouse button. */ 
+	/** Second extra mouse button. */
 	EXTRA2: 5,
 	/** The primary mouse button. */
 	PRIMARY: LEFT,

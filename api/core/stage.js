@@ -64,7 +64,7 @@ Stage.prototype.enter = function() {
 }
 
 /**
- * Overload this callback to do some cleaning when the stage is removed. 
+ * Overload this callback to do some cleaning when the stage is removed.
  */
 Stage.prototype.leave = function() {
 

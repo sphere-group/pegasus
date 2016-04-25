@@ -50,37 +50,3 @@ exports.description = "";
  * @type {String}
  */
 exports.author = "";
-
-/**
- * Add a new callback for specified event.
- *
- * @param {String} event - The name of the event.
- * @param {Function} callback - The callback function.
- */
-exports.on = function(event, callback) {
-	if(_callbacks[event] == null)
-		_callbacks[event] = [];
-	_callbacks[event].push(callback);
-}
-
-/**
- * Trigger an event with given arguments.
- *
- * @param {String} event - The name of the event.
- * @param {Array} arguments - The arguments to the callback.
- */
-exports.trigger = function(event, arguments) {
-	var engine = require("engine");
-
-	for(var cb in _callbacks[event]) {
-		engine.dispatch(function () {
-			cb.call(arguments);
-		});
-	}
-}
-
-/*
- * After reading above functions, you might wonder when the
- * actual callback is called. This is done in the 'doStuff' part
- * of the game loop, if time is free.
- */

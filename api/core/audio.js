@@ -78,7 +78,7 @@ exports.Sound = function(path)
 	 * @type {Mixer}
 	 */
 	this.mixer = null;
-	
+
 	/**
 	 * The SphereFS path of the sound.
 	 *
@@ -200,7 +200,7 @@ exports.SoundStream = function(frequency, bits, channels)
 		this.playing = true;
 		this.mixer = mixer;
 	};
-	
+
 	/**
 	 * Pauses or resumes playback.
 	 *
@@ -210,7 +210,7 @@ exports.SoundStream = function(frequency, bits, channels)
 	{
 		this.playing = !paused && this.mixer != null;
 	};
-	
+
 	/**
 	 * Drains the stream buffer and stops playback.
 	 */
@@ -219,7 +219,7 @@ exports.SoundStream = function(frequency, bits, channels)
 		this.playing = false;
 		this.mixer = null;
 	};
-	
+
 	/**
 	 * Writes sound data to the stream buffer. The format expected depends on
 	 * the arguments passed to the SoundStream constructor.

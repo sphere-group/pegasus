@@ -51,7 +51,7 @@ exports.add = function(stage) {
 		stage.load();
 		stage.loaded = true;
 	}
-	
+
 	stage.enter();
 	stages.push(stage);
 	return stage;
