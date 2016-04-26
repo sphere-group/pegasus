@@ -40,13 +40,13 @@
 function Color(r,g,b,a) {
 	/** Red value. */
 	this.red = r;
-	
+
 	/** Green value. */
 	this.green = g;
-	
+
 	/** Blue value. */
 	this.blue = b;
-	
+
 	/** Alpha value. */
 	this.alpha = a || 1.0;
 }

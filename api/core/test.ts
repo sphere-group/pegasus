@@ -22,3 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+/**
+ * @module assert
+ * @author Jos Kuijpers (Rahkiin)
+ *
+ * @ref http://wiki.commonjs.org/wiki/Unit_Testing/1.0
+ */
+
+export default class Test {
+
+    /**
+     * Run unit tests and catalog their results.
+     *
+     * if (module === require.main)
+     *     require("test").run(exports);
+     *
+     * can be used to make a file testable
+     */
+    public static run(tests: any) {
+        /* run must accept any Object, usually a unit test module's exports. "run" will scan the object for
+         * all functions and object properties that have names that begin with but are not equal to "test",
+         * and other properties for specific flags. Sub-objects with names that start with but are not equal
+         * to "test" will be run as sub-tests.
+         *
+         * Test names may be any String that begins with "test", not necessarily respecting a case convention.
+         */
+    }
+}

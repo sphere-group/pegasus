@@ -23,15 +23,22 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 /**
  * @module console
  * @author Jos Kuijpers (Rahkiin)
+ *
+ * @ref http://wiki.commonjs.org/wiki/Console
  */
 
 export default class Console {
     /**
-     * Show a log message on the console.
+     * logs a message to with visual "log" representation allowing user to distinguish
+     * form other message types. You may pass as many arguments as you'd like, and they
+     * will be joined together in a space-delimited line.
+     *
+     * The first argument may be a printf-like pattern string.
+     *
+     * Both techniques can be combined.
      *
      * @param {any[]} args
      * arguments are joined together with spaces.
@@ -41,14 +48,81 @@ export default class Console {
     }
 
     /**
-     * Show an error message on the console.
+     * Logs a message, with a visual "debug" representation. Optionally includes an
+     * info of a caller (file, line where it was called from).
      *
-     * The engine does not need to exit.
+     * @param {any[]} ...args [description]
+     */
+    public static debug(...args: any[]): void {
+    }
+
+    /**
+     * Logs a message with the visual "info" representation. Optionally includes an
+     * info of a caller (file, line where it was called from).
      *
-     * @param {any[]} args
-     * arguments are joined together with spaces.
-     * @noreturn
+     * @param {any[]} ...args [description]
+     */
+    public static info(...args: any[]): void {
+    }
+
+    /**
+     * Logs a message with the visual "warning" representation. Optionally includes an
+     * info of a caller (file, line where it was called from).
+     *
+     * @param {any[]} ...args [description]
+     */
+    public static warn(...args: any[]): void {
+    }
+
+    /**
+     * Logs a message with the visual "error" representation. Optionally includes an
+     * info of a caller (file, line where it was called from).
+     *
+     * @param {any[]} ...args [description]
      */
     public static error(...args: any[]): void {
+    }
+
+    /**
+     * Logs a static / interactive listing of all properties of the object.
+     *
+     * @param {any} object [description]
+     */
+    public static dir(object: any): void {
+    }
+
+    /**
+     * Logs a static / interactive stack trace of JavaScript execution at the point where it is called.
+     */
+    public static trace(): void {
+    }
+
+    /**
+     * Logs a message to and opens a nested block to indent all future messages sent.
+     */
+    public static group(...args?: any[]): void {
+    }
+
+    /**
+     * Closes the most recently opened block created by a call to require("console").group()
+     */
+    public static unGroup(): void {
+    }
+
+    /**
+     * Creates a new timer under the given name. Call require("console").timeEnd(name) with
+     * the same name to stop the timer and log the time elapsed..
+     *
+     * @param {string} name [description]
+     */
+    public static time(name: string): void {
+    }
+
+    /**
+     * Stops a timer created by a call to require("console").time(name) and logs the time elapsed.
+     *
+     * @param {string} name [description]
+     */
+    public static timeEnd(name: string): void {
     }
 }
