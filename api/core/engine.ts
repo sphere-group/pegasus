@@ -33,7 +33,8 @@ export default class Engine {
     /**
      * Get the API level.
      *
-     * An Android-ish approach.
+     * An Android-ish approach.  The API level increases whenever new features
+     * are added to the core Pegasus standard.
      *
      * @readonly
      * @type {Number}
@@ -56,8 +57,8 @@ export default class Engine {
      * @type {Object}
      */
     public static versions: Map = {
-    	"sphere": "2.0.0",
-    	"spidermonkey": "1.8"
+        "sphere": "2.0.0",
+        "spidermonkey": "1.8"
     };
 
     /**
@@ -77,7 +78,7 @@ export default class Engine {
      * @static
      */
     public static extensions: string[] = [
-    	"sqlite"
+        "sqlite"
     ];
 
     /**
@@ -103,5 +104,14 @@ export default class Engine {
      * @noreturn
      */
     public static restart(): void {
+    }
+
+    /**
+     * Sleep for a set amount of time.
+     *
+     * This will put the engine in an idle state.  No JavaScript code will be
+     * executed until the timeout expires.
+     */
+    public static sleep(time: number): void {
     }
 }
