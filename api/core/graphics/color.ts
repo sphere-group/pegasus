@@ -33,9 +33,9 @@ export default class Color {
      * Create a new color.
      *
      * @constructor
-     * @param {Number} r - Red value, ranging 0 to 255.
-     * @param {Number} g - Green value, ranging 0 to 255.
-     * @param {Number} b - Blue value, ranging 0 to 255.
+     * @param {Number} r - Red value, ranging 0.0 to 1.0.
+     * @param {Number} g - Green value, ranging 0.0 to 1.0.
+     * @param {Number} b - Blue value, ranging 0.0 to 1.0.
      * @param {Number} [a=1.0] - Alpha value, ranging 0.0 to 1.0.
      */
     constructor(public red: number, public green: number, public blue: number, public alpha?: number) {
@@ -65,25 +65,25 @@ export default class Color {
     }
 
     /**
-     * Red color: (255, 0, 0)
+     * Red color: (1.0, 0, 0)
      *
      * @const
      */
-    public static RED: Color = new Color(255, 0, 0);
+    public static RED: Color = new Color(1.0, 0, 0);
 
     /**
-     * Green color: (0, 255, 0)
+     * Green color: (0, 1.0, 0)
      *
      * @const
      */
-    public static GREEN: Color = new Color(0, 255, 0);
+    public static GREEN: Color = new Color(0, 1.0, 0);
 
     /**
-     * Blue color: (0, 0, 255)
+     * Blue color: (0, 0, 1.0)
      *
      * @const
      */
-    public static BLUE: Color = new Color(0, 0, 255);
+    public static BLUE: Color = new Color(0, 0, 1.0);
 
     /**
      * Black color: (0, 0, 0)
@@ -93,53 +93,53 @@ export default class Color {
     public static BLACK: Color = new Color(0, 0, 0);
 
     /**
-     * Gray color: (127, 127, 127)
+     * Gray color: (0.5, 0.5, 0.5)
      *
      * @const
      */
-    public static GRAY: Color = new Color(127, 127, 127);
+    public static GRAY: Color = new Color(0.5, 0.5, 0.5);
 
     /**
      * Dark gray color: (85, 85, 85)
      *
      * @const
      */
-    public static DARKGRAY: Color = new Color(85, 85, 85);
+    public static DARKGRAY: Color = new Color(0.333, 0.333, 0.333);
 
     /**
      * Light gray color: (170, 170, 170)
      *
      * @const
      */
-    public static LIGHTGRAY: Color = new Color(170, 170, 170);
+    public static LIGHTGRAY: Color = new Color(0.666, 0.666, 0.666);
 
 
     /**
-     * White color: (255, 255, 255)
+     * White color: (1.0, 1.0, 1.0)
      *
      * @const
      */
-    public static WHITE: Color = new Color(255, 255, 255);
+    public static WHITE: Color = new Color(1.0, 1.0, 1.0);
 
     /**
-     * Yellow color: (255, 255, 0)
+     * Yellow color: (1.0, 1.0, 0)
      *
      * @const
      */
-    public static YELLOW: Color = new Color(255, 255, 0);
+    public static YELLOW: Color = new Color(1.0, 1.0, 0);
 
     /**
-     * Purple color: (255, 0, 255)
+     * Purple color: (1.0, 0, 1.0)
      *
      * @const
      */
-    public static PURPLE: Color = new Color(255, 0, 255);
+    public static PURPLE: Color = new Color(1.0, 0, 1.0);
 
     /**
-     * Cyan color: (0, 255, 255)
+     * Cyan color: (0, 1.0, 1.0)
      *
      * @const
      */
-    public static CYAN: Color = new Color(0, 255, 255);
+    public static CYAN: Color = new Color(0, 1.0, 1.0);
 
 }
