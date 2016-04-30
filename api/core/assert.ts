@@ -74,6 +74,9 @@ export default class Assert {
 
     public static throws(block: Function, error?: Error, message?: string): void {
     }
+
+    public static doesNotThrow(block: Function, error?: Error, message?: string): void {
+    }
 }
 
 export class AssertionError extends Error {
