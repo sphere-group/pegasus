@@ -111,6 +111,8 @@ export default class Engine {
      *
      * This will put the engine in an idle state.  No JavaScript code will be
      * executed until the timeout expires.
+     *
+     * @param {number} time Time to sleep in seconds. Can be floating-point up to milliseconds.
      */
     public static sleep(time: number): void {
     }
