@@ -61,7 +61,7 @@ export default class Util {
 	 * @return {Boolean} true if the argument is null or undefined, false otherwise.
 	 */
     public static isNullOrUndefined(arg: any): boolean {
-		return arg == null;
+		return arg === null || arg === undefined;
 	}
 
 	/**
@@ -145,24 +145,18 @@ export default class Util {
 	};
 
 	/**
-	 * Get whether specified value is a buffer.
-	 *
-	 * @param arg - The value.
-	 * @return {Boolean} true if the argument is a buffer, false otherwise.
-	 */
-    public static isArrayBuffer(arg: any): boolean {
-		return arg instanceof ArrayBuffer;
-	};
-
-	/**
 	 * Get whether specified value is a symbol.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is a symbol, false otherwise.
 	 */
     public static isSymbol(arg: any): boolean {
-		return arg instanceof Symbol;
+		return typeof arg === "symbol";
 	};
+
+	public static isPrimitive(arg: any): boolean {
+		return arg === null || (typeof arg !== "object" && typeof arg !== "function")
+	}
 
 	/**
 	 * Make a function inherit from another function.
@@ -181,16 +175,4 @@ export default class Util {
 			}
 		});
 	};
-
-	/**
-	 * Test whether given value is nothing.
-	 *
-	 * Use for testing availability of function arguments.
-	 *
-	 * @param  {any}     arg [description]
-	 * @return {boolean}     [description]
-	 */
-	public static no(arg: any): boolean {
-		return arg === null || arg === undefined;
-	}
 }
