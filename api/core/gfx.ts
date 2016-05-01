@@ -31,99 +31,276 @@
 
 export default class Gfx {
 
+    /**
+     * Set or get the frameRate for throttling of flip().
+     *
+     * Set to 0 to disable throttling.
+     *
+     * @type {number}
+     */
     public static frameRate: number;
 
-    get screen: Surface
+    /**
+     * Get the drawing target.
+     *
+     * @readonly
+     * @type {Surface}
+     */
+    public static screen: Surface;
 
+    /**
+     * Flip the doublebuffer to the screen.
+     */
     public static flip(): void {
-
     }
 
-    public static setResolution(): void {
+    /**
+     * Set the resolution of the target drawing area.
+     *
+     * @param {number} width  A positive integer.
+     * @param {number} height A positibe integer.
+     */
+    public static setResolution(width: number, height: number): void {
 
     }
 }
 
+/**
+ * A color abstraction with utility functions.
+ */
 export class Color {
-    clone
-    blend
-    transform
 
-    constructor() {
+    /**
+     * Create a new color.
+     *
+     * @constructor
+     * @param {Number} r - Red value, ranging 0.0 to 1.0.
+     * @param {Number} g - Green value, ranging 0.0 to 1.0.
+     * @param {Number} b - Blue value, ranging 0.0 to 1.0.
+     * @param {Number} [a=1.0] - Alpha value, ranging 0.0 to 1.0.
+     */
+    constructor(public red: number, public green: number, public blue: number, public alpha?: number) {
+        this.alpha = this.alpha || 1.0;
+    }
 
+    /**
+     * Blend the color evenly with specified color.
+     *
+     * @param {Color} color - The color to blend with.
+     * @return {Color} The new color.
+     */
+    public blend(color: Color): Color {
+        return this.blendWeighted(color, 0.5, 0.5);
+    }
+
+    /**
+     * Blend the color weighted with specified color.
+     *
+     * @param {Color} color - The color to blend with.
+     * @param {Number} weight1 - The weight for the 'this' color, ranging 0.0 to 1.0.
+     * @param {Number} weight2 - The weight for the specified color, ranging 0.0 to 1.0.
+     * @return {Color} The new color.
+     */
+    public blendWeighted(color: Color, weight1: number, weight2: number): Color {
+        return null;
+    }
+
+    /**
+     * Get a copy of this color.
+     *
+     * @return {Color} New copy.
+     */
+    public clone(): Color {
+        return new Color(this.red, this.green, this.blue, this.alpha);
+    }
+
+    /**
+     * Transform the color using a colormatrix.
+     *
+     * @param  {ColorMatrix} matrix The matrix.
+     * @return {Color}              The new color.
+     */
+    public transform(matrix: ColorMatrix): Color {
+        return this;
     }
 }
 
 export class ColorMatrix {
+    public rn: number;
+    public rr: number;
+    public rg: number;
+    public rb: number;
 
+    public gn: number;
+    public gr: number;
+    public gg: number;
+    public gb: number;
+
+    public bn: number;
+    public br: number;
+    public bg: number;
+    public bb: number;
 }
 
+/**
+ * A group of shapes.
+ */
 export class Group {
-    getset shader
-    getset transform
+    /**
+     * Shader on the group.
+     *
+     * @type {Shader}
+     */
+    public shader: Shader;
 
-    constructor() {
+    /**
+     * The transform.
+     *
+     * @type {Transform}
+     */
+    public transform: Transform;
 
+    constructor(public shapes: Shape[]) {
     }
 
-    draw() {
-
+    /**
+     * Draw the group.
+     *
+     * @param {Surface} [target] Target to draw onto.
+     */
+    public draw(target?: Surface) {
     }
 }
 
 export class Image {
-    get height
-    get width
+    /**
+     * Width of the image.
+     *
+     * @readonly
+     * @type {number}
+     */
+    public width: number;
 
-    constructor() {
+    /**
+     * Height of the image.
+     *
+     * @readonly
+     * @type {number}
+     */
+    public height: number;
+
+    constructor(public filename: string) {
+    }
+}
+
+export interface IShaderOptions {
+    /**
+     * Filename of the vertex shader
+     * @type {string}
+     */
+    vertex: string;
+
+    /**
+     * Filename of the fragment shader
+     * @type {string}
+     */
+    fragment: string;
+}
+
+export class Shader {
+
+    /**
+     * Create a new shader.
+     *
+     * @constructor
+     * @param {IShaderOptions} options [description]
+     */
+    constructor(options: IShaderOptions) {
 
     }
 }
 
 export class Shape {
-    getset texture
+    // getset texture
 
     constructor() {
+    }
 
+    public draw(target?: Surface, matrix?: Transform, shader?: Shader): void {
     }
 }
 
+/**
+ * Drawable surface.
+ */
 export class Surface {
-    get height
-    get width
+    /**
+     * Width of surface.
+     *
+     * @readonly
+     * @type {number}
+     */
+    public width: number;
 
-    constructor() {
+    /**
+     * Height of surface.
+     *
+     * @readonly
+     * @type {number}
+     */
+    public height: number;
 
+    /**
+     * [constructor description]
+     * @param {number} public width  Width of surface.
+     * @param {number} public height Height of surface.
+     */
+    constructor(width: number, height: number) {
+        this.width = width;
+        this.height = height;
     }
 
-    toImage() {
-
+    /**
+     * Get an image of the surface.
+     *
+     * @return {Image} [description]
+     */
+    public toImage(): Image {
+        return null;
     }
 }
 
 export class Transform {
 
     constructor() {
+    }
+
+    public compose(other: Transform): void {
 
     }
 
-    compose() {
+    public identity(): void {
 
     }
 
-    identity() {
+    public rotate(theta: number): void {
 
     }
 
-    rotate() {
+    public scale(sx: number, sy: number): void {
 
     }
 
-    scale() {
+    public translate(tx: number, ty: number) {
 
     }
 
-    translate() {
-
+    /**
+     * Get an independent copy of this Transform.
+     *
+     * @return {Transform} [description]
+     */
+    public clone(): Transform {
+        return this;
     }
 }
