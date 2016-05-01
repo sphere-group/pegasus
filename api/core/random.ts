@@ -113,4 +113,20 @@ export default class Random {
 
         return average;
     };
+
+    /**
+     * Generate a random UUID.
+     *
+     * When supplied with no parameters, use RFC4122 v4 ID.
+     *
+     * @param  {number} [length] Length of the uuid
+     * @param  {number} [radix=62]  Radix of the characters used
+     * @return {string}        UUID
+     */
+    public static uuid(length?: number, radix?: number): string {
+        precondition(util.no(length) || length >= 0);
+        precondition(util.no(radix) || radix >= 2);
+
+        return null;
+    }
 }
