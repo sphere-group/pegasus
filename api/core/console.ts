@@ -99,8 +99,10 @@ export default class Console {
 
     /**
      * Logs a message to and opens a nested block to indent all future messages sent.
+     *
+     * @param {any[]} ...args Optional log value
      */
-    public static group(...args?: any[]): void {
+    public static group(...args: any[]): void {
     }
 
     /**

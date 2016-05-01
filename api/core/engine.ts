@@ -115,5 +115,6 @@ export default class Engine {
      * @param {number} time Time to sleep in seconds. Can be floating-point up to milliseconds.
      */
     public static sleep(time: number): void {
+        precondition(time >= 0);
     }
 }

@@ -26,6 +26,8 @@
 /**
  * @module game
  * @author Jos Kuijpers (Rahkiin)
+ *
+ * Values are read from game.sgm
  */
 
 export default class Game {
@@ -33,6 +35,7 @@ export default class Game {
     /**
      * Name of current game.
      *
+     * @readonly
      * @type {String}
      */
     public static name: string = "";
@@ -40,6 +43,7 @@ export default class Game {
     /**
      * Description of current game.
      *
+     * @readonly
      * @type {String}
      */
     private description: string = "";
@@ -47,6 +51,8 @@ export default class Game {
     /**
      * Author of current game.
      *
+     *
+     * @readonly
      * @type {String}
      */
     private author: string = "";
@@ -56,9 +62,9 @@ export default class Game {
      *
      * This will call the willQuit delegate for a nice and clean shutdown.
      *
-     * @param  {Any?} object Exit object
+     * @noreturn
+     * @param  {Any} [object] Exit object
      */
     public static quit(object?: any): void {
-
     }
 }

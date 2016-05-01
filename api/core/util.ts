@@ -35,7 +35,7 @@ export default class Util {
 	public static isArray = Array.isArray;
 
 	/**
-	 * Get whethet specified value is a boolean.
+	 * Get whether specified value is a boolean.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is a boolean, false otherwise.
@@ -45,7 +45,7 @@ export default class Util {
 	}
 
 	/**
-	 * Get whethet specified value is null.
+	 * Get whether specified value is null.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is null, false otherwise.
@@ -55,7 +55,7 @@ export default class Util {
 	}
 
 	/**
-	 * Get whethet specified value is null or undefined.
+	 * Get whether specified value is null or undefined.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is null or undefined, false otherwise.
@@ -75,7 +75,7 @@ export default class Util {
 	}
 
 	/**
-	 * Get whethet specified value is a string.
+	 * Get whether specified value is a string.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is a string, false otherwise.
@@ -85,7 +85,7 @@ export default class Util {
 	}
 
 	/**
-	 * Get whethet specified value is undefined.
+	 * Get whether specified value is undefined.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is undefined, false otherwise.
@@ -95,7 +95,7 @@ export default class Util {
 	}
 
 	/**
-	 * Get whethet specified value is a regular expression.
+	 * Get whether specified value is a regular expression.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is a regular expression, false otherwise.
@@ -105,7 +105,7 @@ export default class Util {
 	}
 
 	/**
-	 * Get whethet specified value is an object.
+	 * Get whether specified value is an object.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is an object, false otherwise.
@@ -115,7 +115,7 @@ export default class Util {
 	}
 
 	/**
-	 * Get whethet specified value is a date.
+	 * Get whether specified value is a date.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is a date, false otherwise.
@@ -125,7 +125,7 @@ export default class Util {
 	};
 
 	/**
-	 * Get whethet specified value is an error.
+	 * Get whether specified value is an error.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is an error, false otherwise.
@@ -135,7 +135,7 @@ export default class Util {
 	};
 
 	/**
-	 * Get whethet specified value is a function.
+	 * Get whether specified value is a function.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is a function, false otherwise.
@@ -145,13 +145,23 @@ export default class Util {
 	};
 
 	/**
-	 * Get whethet specified value is a buffer.
+	 * Get whether specified value is a buffer.
 	 *
 	 * @param arg - The value.
 	 * @return {Boolean} true if the argument is a buffer, false otherwise.
 	 */
     public static isArrayBuffer(arg: any): boolean {
 		return arg instanceof ArrayBuffer;
+	};
+
+	/**
+	 * Get whether specified value is a symbol.
+	 *
+	 * @param arg - The value.
+	 * @return {Boolean} true if the argument is a symbol, false otherwise.
+	 */
+    public static isSymbol(arg: any): boolean {
+		return arg instanceof Symbol;
 	};
 
 	/**
