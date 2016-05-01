@@ -182,4 +182,15 @@ export default class Util {
 		});
 	};
 
+	/**
+	 * Test whether given value is nothing.
+	 *
+	 * Use for testing availability of function arguments.
+	 *
+	 * @param  {any}     arg [description]
+	 * @return {boolean}     [description]
+	 */
+	public static no(arg: any): boolean {
+		return arg === null || arg === undefined;
+	}
 }
