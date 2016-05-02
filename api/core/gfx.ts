@@ -41,7 +41,7 @@ export default class Gfx {
     public static frameRate: number;
 
     /**
-     * Get the drawing target.
+     * Get the default render target (the backbuffer).
      *
      * @readonly
      * @type {Surface}
@@ -49,7 +49,7 @@ export default class Gfx {
     public static screen: Surface;
 
     /**
-     * Flip the doublebuffer to the screen.
+     * Flip the backbuffer to the screen.
      */
     public static flip(): void {
     }
@@ -115,31 +115,17 @@ export class Color {
     }
 
     /**
-     * Transform the color using a colormatrix.
+     * Transform the color using matrix multiplication.
      *
-     * @param  {ColorMatrix} matrix The matrix.
-     * @return {Color}              The new color.
+     * The alpha component is ignored and the matrix is calculated as though
+     * alpha = 1.0.
+     *
+     * @param  {Transform} transform The Transform to use.
+     * @return {Color}               The new color.
      */
-    public transform(matrix: ColorMatrix): Color {
+    public transform(transform: Transform): Color {
         return this;
     }
-}
-
-export class ColorMatrix {
-    public rn: number;
-    public rr: number;
-    public rg: number;
-    public rb: number;
-
-    public gn: number;
-    public gr: number;
-    public gg: number;
-    public gb: number;
-
-    public bn: number;
-    public br: number;
-    public bg: number;
-    public bb: number;
 }
 
 /**
@@ -261,7 +247,10 @@ export class Surface {
     }
 
     /**
-     * Get an image of the surface.
+     * Create an Image from the surface contents.
+     *
+     * Note that modifying the surface contents after this is called will not
+     * affect the generated image.
      *
      * @return {Image} [description]
      */
@@ -270,35 +259,70 @@ export class Surface {
     }
 }
 
+/**
+ * Represents a transformation matrix.
+ * Transforms are used for transformations such as scaling and rotation when
+ * rendering primitives, and can also be used as color matrices if that's
+ * supported by the shader.
+ */
 export class Transform {
 
     constructor() {
     }
 
+    /**
+     * Multiplies another Transform into this one.
+     *
+     * The result of this function is to make a combined transformation.  For
+     * example, composing a rotation with a translation will result in a
+     * matrix which rotates and then translates in one step.
+     *
+     * @param {Transform} other - The Transform to multiply this one with.
+     */
     public compose(other: Transform): void {
-
     }
 
+    /**
+     * Sets this Transform to identity (no transformation).
+     */
     public identity(): void {
-
     }
 
-    public rotate(theta: number): void {
-
+    /**
+     * Applies a rotation to the transformation matrix.
+     *
+     * @param {number} theta - The rotation angle, in radians.
+     * @param {number} vx - X component of the axis to rotate around.
+     * @param {number} vy - Y component of the axis to rotate around.
+     * @param {number} vz - Z component of the axis to rotate around.
+     */
+    public rotate(theta: number, vx: number, vy: number, vz: number): void {
     }
 
-    public scale(sx: number, sy: number): void {
-
+    /**
+     * Applies a scaling transform to the transformation matrix.
+     *
+     * @param {number} sx - X axis scaling factor.
+     * @param {number} sy - Y axis scaling factor.
+     * @param {number} sz - Z axis scaling factor.
+     */
+    public scale(sx: number, sy: number, sz: number): void {
     }
 
-    public translate(tx: number, ty: number) {
-
+    /**
+     * Applies a translation to the transformation matrix.
+     *
+     * @param {number} dx - Amount to translate along the X axis.
+     * @param {number} dy - Amount to translate along the Y axis.
+     * @param {number} dz - Amount to translate along the Z axis.
+     */
+    public translate(tx: number, ty: number, tz: number) {
     }
 
     /**
      * Get an independent copy of this Transform.
      *
-     * @return {Transform} [description]
+     * @return {Transform} - The cloned Transform object.
      */
     public clone(): Transform {
         return this;
