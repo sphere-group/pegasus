@@ -62,14 +62,6 @@ export default class Engine {
     };
 
     /**
-     * The main module.
-     *
-     * @readonly
-     * @type {Module}
-     */
-    public static mainModule = null;
-
-    /**
      * An array of loaded extensions.
      *
      * The key is the extension point. This is also the string used
