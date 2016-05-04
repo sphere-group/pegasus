@@ -29,7 +29,7 @@
  * @author Bruce Pascoe (Fat Cerberus) and Jos Kuijpers (Rahkiin)
  */
 
-export default class Gfx {
+export default class GfxModule {
 
     /**
      * Set or get the frameRate for throttling of flip().
@@ -84,25 +84,15 @@ export class Color {
     }
 
     /**
-     * Blend the color evenly with specified color.
+     * Blend the color with another using linear interpolation.
+     * All color channels are interpolated, included the alpha channel.
      *
-     * @param {Color} color - The color to blend with.
+     * @param {Color} color2 - The color to blend with.
+     * @param {number} alpha - The alpha value to use for blending. Ranges [0-1].
      * @return {Color} The new color.
      */
-    public blend(color: Color): Color {
+    public blend(color2: Color, alpha: number): Color {
         return this.blendWeighted(color, 0.5, 0.5);
-    }
-
-    /**
-     * Blend the color weighted with specified color.
-     *
-     * @param {Color} color - The color to blend with.
-     * @param {Number} weight1 - The weight for the 'this' color, ranging 0.0 to 1.0.
-     * @param {Number} weight2 - The weight for the specified color, ranging 0.0 to 1.0.
-     * @return {Color} The new color.
-     */
-    public blendWeighted(color: Color, weight1: number, weight2: number): Color {
-        return null;
     }
 
     /**
@@ -140,7 +130,7 @@ export class Group {
     public shader: Shader;
 
     /**
-     * The transform.
+     * The Group's transformation matrix.
      *
      * @type {Transform}
      */
@@ -152,7 +142,7 @@ export class Group {
     /**
      * Draw the group.
      *
-     * @param {Surface} [target] Target to draw onto.
+     * @param {Surface} target - The Surface to draw to.
      */
     public draw(target?: Surface) {
     }
