@@ -19,7 +19,7 @@ purposes:
    single-file package.
 
 
-1. Path Resolution
+I. Path Resolution
 ------------------
 
 1. When provided with a relative file path (e.g. `sounds/munch.wav`), the
@@ -51,8 +51,31 @@ purposes:
     2. Reject the path by throwing a `TypeError`.
 
 
-2. The Save Data Directory ("~/")
----------------------------------
+II. The SphereFS Sandbox ("@/")
+-------------------------------
+
+The Sandbox is normally accessed implicitly using a relative path such as
+`sounds/munch.wav`.  In some contexts, such as module IDs used in a `require`
+call, this may be ambiguous.  In such cases the relative path may be prefixed
+with `@/` to resolve the ambiguity.
+
+1. `@/` MUST refer to the directory containing the game manifest file, usually
+   a file named `game.s2gm`.  This location will henceforce be designated as
+   the Sandbox in this document.
+
+2. The implementation may allow write access to the Sandbox if and only if it
+   declares the `sphere_legacy_api` extension, indicating native support for
+   games written for Sphere 1.x (which expect their sandbox to be writable).
+   If the `sphere_legacy_api` extension is not declared, and a game attempts to
+   write to the Sandbox, the implementation MUST throw a `TypeError`.
+
+3. If the implementation declares the `sphere_legacy_api` extension, legacy
+   functions (e.g. `LoadImage`)--and only legacy functions--MUST interpret `~/`
+   as an alias for the Sandbox.  This ensures full compatibility.
+
+
+III. The Save Data Directory ("~/")
+-----------------------------------
 
 The save data directory is aliased as "~/" and refers to a user-specific
 location for data which needs to persist between game sessions.  For example,
@@ -69,8 +92,8 @@ This directory has a few simple requirements:
    The specific location doesn't matter as long as this requirement is met.
 
 
-3. The System Assets Directory ("#/")
--------------------------------------
+IV. The System Assets Directory ("#/")
+--------------------------------------
 
 An implementation may choose to expose a directory containing assets available
 to all games.  This can be useful for providing default fonts and window
@@ -94,7 +117,7 @@ styles, for example.
    `TypeError`.
 
 
-812. The All-Devouring Pig Directory (":pig_nose:/")
-----------------------------------------------------
+DCCCXII. The All-Devouring Pig Directory (":pig_nose:/")
+--------------------------------------------------------
 
-This is where the all-devouring pig is stored.  *MUNCH*
+This is where the all-devouring pig is stored.  **\*MUNCH\***
