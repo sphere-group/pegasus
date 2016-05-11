@@ -4,149 +4,153 @@ Sphere File System (SphereFS)
 Abstract
 --------
 
-SphereFS provides a unified standard for addressing files within a Sphere game.
-At its core the system is based on relative paths (e.g. `sounds/munch.wav`).
-This hides the underlying physical file system from the game, which serves two
-purposes:
+A standard for addressing files and directories within *Pegasus* game code
+based on relative paths (e.g. `sounds/munch.wav`) and sand-character aliases
+(e.g. `~/pigquest.json`).  The details of the host's file system are thus
+hidden from game code, which serves two purposes:
 
-1. It facilitates sandboxing.  Under SphereFS, a game can only access files in
-   its own asset repository or certain other locations deemed safe by the
-   implementation and exposed as aliases.  For example a game might create a
-   save file at `~/mygame/save.json`.  Any attempt to circumvent the sandbox
-   using trickery (e.g. `@/../`) shall be met with a `TypeError` and the
-   operation cancelled.
+1. It facilitates sandboxing.  A game can only access files in its own asset
+   repository or certain other locations deemed safe by the implementation and
+   exposed as aliases.  For example a game might refer to its save file as
+   `~/mygame/save.json`.  Any attempt to circumvent the sandbox using trickery
+   (e.g. `@/../`) is met with a sandboxing error and the operation cancelled.
 
-2. It abstracts the game's delivery mechanism.  As SphereFS is based on
+2. It abstracts the game's delivery mechanism.  As the system is based on
    relative paths and well-defined aliases, path semantics remain the same
    regardless of whether the game is provided as a loose collection of asset
    files, an SPK package, etc.
 
 
-I. The Asset Repository ("@/")
-------------------------------
+Terminology
+-----------
 
-The Asset Repository, henceforth "Repository", is the conceptual directory
-containing the files making up a game package.
+* **Absolute Path:** A path which refers unambiguously to a file or directory
+  in the Host's file system.  For example, `C:\pigs\maggie.fat` or `/usr/bin/`
+  would be absolute paths.
 
-In most cases the Repository is referenced implicitly by using a relative path
-such as `sounds/munch.wav`.  In certain contexts, however, such as module IDs
-used in a `require()` call, a bare SphereFS path may be ambiguous.  For
-example, `require('gfx')` will always load the built-in `gfx` module.  In cases
-such as this, the path may be rewritten as `@/path/to/file` to resolve the
-ambiguity.
+* **Host:** The operating system hosting the Implementation.
 
-1. When a path string beginning `@/...` is parsed, the implementation MUST
-   resolve it against the location of the game manifest file, usually a file
-   named `game.s2gm`.  This location will henceforth be referred to as the
-   Root.
+* **Implementation:** The SphereFS implementation in question, typically a
+  *Pegasus*-compliant game engine.
 
-2. The implementation shall allow write access to the Repository IF AND ONLY IF
-   it declares the `sphere_legacy_api` extension, indicating native support for
-   games written for Sphere 1.x.  These games expect their repository to be
-   writable.  If the `sphere_legacy_api` extension is not declared, and a game
-   attempts to write to the Repository, the implementation MUST throw a
-   `TypeError`.
-
-3. If the implementation declares the `sphere_legacy_api` extension, legacy
-   functions (e.g. `LoadImage`)--and ONLY legacy functions--MUST interpret `~/`
-   as an alias for the Root.
+* **SphereFS Path:** A path of the form `path/to/file`, `@/path/to/file`,
+  `~/path/to/file` or `#/path/to/file`, which refers to a file or directory
+  within the SphereFS sandbox.
 
 
-II. The Save Data Directory ("~/")
-----------------------------------
+I. The Repository
+-----------------
 
-The Save Data directory is aliased as `~/` and refers to a conceptual
-user-specific, writable directory that games can use to persist data between
-game sessions or even other games.  For example, a game might use this
-location to store save data, or a sequel might import data from the previous
-installment.
+The **Repository** is a conceptual read-only directory containing the files and
+directories which make up a running game.  This facilitates sandboxing and
+abstracts the specific delivery method for a game package, which ensures
+predictable behavior of game code from system to system.
 
-1. When a path string beginning `~/...` is parsed, the implementation MUST
-   resolve it against the Save Data directory.
+1. The root of the Repository MUST be mapped to the location of the game
+   manifest file.  This is a JSON file named `game.s2gm` which contains
+   metadata describing the game.  The particular layout of this file is beyond
+   the scope of the SphereFS specification.
 
-2. `~/` MUST refer to the same location for all games.  In particular, any path
-   string beginning `~/...` shall refer to the same file regardless of the
-   game providing the path.
-
-3. The implementation MUST ensure the Save Data directory is writable by the
-   current user without privilege elevation on a properly configured system.
-   The specific location and storage mechanism don't matter as long as this
-   requirement is satisfied.
+2. The Implementation shall not allow write access to the Repository.  If game
+   code attempts to modify the content of the Repository in any way, the
+   implementation MUST throw a `TypeError`.
 
 
-III. The System Asset Collection ("#/")
----------------------------------------
+II. The Save Store
+------------------
 
-An implementation may choose to expose a collection of default assets which are
-available for use by all games.  An engine might use this mechanism to provide
-a collection of ready-to-use fonts or window styles, for example.
+The **Save Store** is a conceptual user-specific, writable directory that game code
+can use to persist data between game sessions or even other games.  For
+instance, a game might store save data here, or a sequel might import data from
+the previous installment.
 
-The System Asset Collection ("SAC") is the conceptual directory containing
-these assets and is aliased as `#/`.  Note that while implementing a SAC is
-optional, the `#/` alias is reserved per SphereFS spec and MUST be treated
-specially by the implementation.
+1. The Save Store MUST be mapped to the same location for all games.  In
+   particular, any path beginning `~/...` shall refer to the same file
+   regardless of the game providing it.
 
-1. When a path string beginning `#/...` is parsed, the implementation MUST
-   either:
-
-   1. Resolve the path against the System Asset Collection.  An implementation
-      MUST declare the `sphere_fs_system_alias` extension if it accepts paths
-      of this form.
-
-   2. Reject the path by throwing a `TypeError`.
-
-2. `#/` MUST refer to the same directory for all games.  In particular, any
-   SphereFS path beginning '#/...' shall refer to the same file regardless of
-   the game providing the path.
-
-3. The implementation shall not allow write access to this directory.  If
-   game code tries to rename or delete anything in this directory, or attempts
-   to open a file contained within in write mode, the engine MUST throw a
-   `TypeError`.
+2. The Implementation MUST ensure the Save Store is writable by a standard
+   user, without any privilege elevation, on a properly configured Host.
 
 
-IV. Path Resolution
--------------------
+III. The System Asset Collection
+--------------------------------
 
-There are a few rules the implementation must follow when dealing with paths to
-ensure the integrity of the sandbox and predictability for game developers.
+The **System Asset Collection**, henceforth **SAC**, is a conceptual read-only
+directory containing data available for use by all games run with a given
+implementation.  The Implementation might use this to provide a collection of
+default fonts, for instance.
 
-1. All SphereFS paths containing `.` (current directory) or `..` (uplevel)
-   terms must be normalized by removing or collapsing all `.` and `..` terms
-   prior to resolution.  If such a path would exit the sandbox when resolved
-   (e.g. `in/../../out`), the implementation MUST throw a `TypeError`.
-   
-   IN NO CASE is the implementation allowed to normalize a SphereFS path
-   against the physical file system.  Normalization MUST be done before path
-   resolution.
+Implementation of the SAC is optional and support is gated by an extension.
 
-2. Paths of the form `path/to/file` refer to the Asset Repository and MUST be
-   resolved against the Root (see Part I).  In the case of module IDs, such a
-   name might or might not refer to a file in the Asset Repository, depending
-   on available modules.  See the Sphere Modules specification for more
-   information.
+1. If a SAC is provided, the Implementation MUST declare the
+   `sphere_fs_system_alias` extension.
+
+2. The SAC MUST be mapped to the same location for all games.  In particular,
+   any path beginning '#/...' shall refer to the same file regardless of the
+   game providing it.
+
+3. The Implementation shall not allow write access to the SAC.  If game code
+   attempts to modify the content of the SAC in any way, the Implementation
+   MUST throw a `TypeError`.
+
+
+IV. Absolute Paths
+------------------
+
+An **Absolute Path** is defined as any path which refers unambiguously to a
+file or directory on the host operating system's file system: for example,
+`C:\tmp\scott.sux` (Windows) and `/tmp/maggie.fat` (*nix) are both examples of
+Absolute Paths.
+
+Whether to support Absolute Paths is at the discretion of the Implementation
+and support is gated by an extension.
+
+1. If the Implementation supports Absolute Paths, it MUST declare the
+   `sphere_fs_absolute_path` extension.
+
+2. Absolute Paths shall not be normalized prior to resolution; the path string
+   MUST be passed to the Host exactly as it was received.
+
+3. Absolute Paths MUST NOT be accepted as CommonJS module IDs.  If, for
+   instance, a game passes an Absolute Path to `require()`, the Implementation
+   MUST throw a `TypeError`.
+
+3. The Implementation shall not allow write access to the file or directory
+   referred to by an Absolute Path.  If game code attempts to modify such a
+   file or directory in any way, The Implementation MUST throw a `TypeError`.
+
+
+V. Rules for Path Resolution
+----------------------------
+
+1. All SphereFS Paths MUST be normalized by removing or collapsing all `.` and
+   `..` terms prior to resolution.  If such a path would breach the sandbox at
+   any point during resolution (e.g. `in/../../out`), The Implementation MUST
+   throw a `TypeError`.
+
+2. Paths of the form `path/to/file` MUST be resolved against the root of the
+   Repository.  In the case of module IDs, such a name MAY be mapped to a file
+   in the Repository, depending on available modules.  See the Sphere Modules
+   specification for more information.
 
 3. Paths or module IDs beginning `@/...` MUST have the alias stripped and the
    remainder of the path resolved according to Rules 1-2.
 
-4. Paths or module IDs beginning `~/...` MUST be resolved against the current
-   user's Save Data directory.
+4. Paths or module IDs beginning `~/...` MUST be resolved against the root of
+   the Save Store.
 
-5. Paths or module IDs beginning `#/...` shall be resolved against the engine's
-   System Asset Collection IF AND ONLY IF the engine declares the
-   `sphere_fs_system_alias` extension; otherwise the implementation shall throw
-   a `TypeError`.
+5. Paths or module IDs beginning `#/...` MUST be resolved against the root of
+   the SAC IF AND ONLY IF the engine declares the `sphere_fs_system_alias`
+   extension.  If this extension has not been declared, the Implementation MUST
+   throw a `TypeError`.
 
 6. A path might be absolute, referring unambiguously to a file or directory on
-   the physical file system of the host OS.  When such a path is parsed in any
-   context where a SphereFS path is expected, the implementation may either:
+   the physical file system of the host OS.  This is called an Absolute Path
+   (see Part IV).  When such a path is parsed in any context where a SphereFS
+   path is expected, the implementation may either:
 
-	1. Resolve the path verbatim against the physical file system.  The
-	   implementation MUST declare the `sphere_fs_absolute_path` extension if
-	   it accepts such paths.
-	   
-	   An absolute path MUST NOT be accepted in place of a CommonJS module ID.
-	   If this happens (for example if a game passes an absolute path to
-	   `require()`), the implementation MUST throw a `TypeError`.
+   1. Resolve the path, verbatim, against the physical file system.  The
+      implementation MUST declare the `sphere_fs_absolute_path` extension if it
+      accepts such paths.
 
-    2. Reject the path by throwing a `TypeError`.
+   2. Reject the path by throwing a `TypeError`.
