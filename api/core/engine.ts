@@ -39,7 +39,7 @@ export default class Engine {
      * @readonly
      * @type {Number}
      */
-    public static apiLevel: number = 2; // 1 is for Sphere 1
+    public static apiLevel: number = 1;
 
     /**
      * Get the name of the engine.
@@ -62,16 +62,17 @@ export default class Engine {
     };
 
     /**
-     * An array of loaded extensions.
+     * Get the extensions supported by the engine.
      *
-     * The key is the extension point. This is also the string used
-     * when importing the module using require().
+     * If an extension is supported, then `extensions.ext_name` will be equal
+     * to true.  Unsupported extensions will simply not be present in the map.
      *
      * @static
      */
-    public static extensions: string[] = [
-        "sqlite"
-    ];
+    public static extensions: Map = {
+        "sphere_fs_absolute_path": true,
+        "sphere_fs_system_alias": true,
+    };
 
     /**
      * Abort the current game with a message.
@@ -104,9 +105,10 @@ export default class Engine {
      * This will put the engine in an idle state.  No JavaScript code will be
      * executed until the timeout expires.
      *
-     * @param {number} time Time to sleep in seconds. Can be floating-point up to milliseconds.
+     * @param {number} time - Time to sleep in seconds.  Fractional values are
+     *                        allowed, e.g. 1.5.
      */
     public static sleep(time: number): void {
-        precondition(time >= 0);
+        time = Math.max(time, 0.0);
     }
 }
