@@ -118,26 +118,25 @@ resource within the Host's file system.  `C:\tmp\scott.sux` (Windows) and
 V. Normalization
 ----------------
 
-All paths must be normalized prior to resolution to ensure they don't escape
-the sandbox through a symbolic link.  Normalization takes one argument
-*argument* and performs the following steps:
+Under SphereFS, paths must be normalized prior to resolution to ensure they
+don't escape the sandbox through a symbolic link.  Normalization takes one
+argument *argument* and performs the following steps:
 
 1. If *argument* is an Absolute Path, return *argument*.
 
 1. Otherwise, split *argument* into an array of substrings at each `/` or `\`,
    excluding empty strings.  Let *terms* be equal to the result.
 
-2. Repeat for each string *term* in *terms*:
+2. If the element at index 0 of *terms* is equal to "~", "@", or "#", then:
+
+      1. Let *alias* be equal to the element at index 0 of *terms*.
+
+      2. Remove the element at index 0 from *terms*.
+
+3. Repeat for each element *term* in *terms*:
 
    1. Let *index* be equal to the position of *term* in *terms*, starting at
       zero.
-
-   2. If *index* is equal to 0 and *term* is equal to "~/", "@/", or "#/",
-      then:
-   
-      1. Let *alias* be equal to *term*.
-      
-      2. Remove the element at *index* from *terms*.
 
    3. If *term* is equal to ".", remove the element at *index* from *terms*.
 
@@ -148,21 +147,22 @@ the sandbox through a symbolic link.  Normalization takes one argument
 
       2. Otherwise, throw a `TypeError`.
 
-3. If *alias* is equal to "~/, "@/", or "#/", insert *alias* into *terms* at
+4. If *alias* is equal to "~", "@", or "#", insert *alias* into *terms* at
    index 0.
 
-4. Join *terms* into a string *path* using separator character "/".
+5. Join *terms* into a single string using separator character "/".  Let *path*
+   be equal to the result.
 
-5. If *argument* refers to a directory, append "/" to *path*.
+6. If *argument* refers to a directory, append "/" to *path*.
 
-5. Return *path*.
+7. Return *path*.
 
 
 VI. Path Resolution
 -------------------
 
 Path resolution takes one argument *argument* and performs the following steps
-to turn a path into a reference to resource:
+to convert a path into a reference to a resource:
 
 1. Normalize *argument* according to the algorithm described in Part V.  Let
    *path* be equal to the result.
