@@ -175,22 +175,24 @@ to convert a path into a reference to a resource:
    2. Otherwise, forward *path* to the Host for resolution.  Let *resource* be
       a reference to the resource at that location.
 
+   3. Return *resource*.
+
 2. If *path* begins with `@/...`, then:
 
    1. Remove the first two characters from *path*.
-   
+
    2. Resolve *path* relative to the root of the Repository.  Let *resource* be
       a reference to the resource at that location.
-   
+
    3. Return *resource*.
 
 3. If *path* begins with `~/...`, then:
 
    1. Remove the first two characters from *path*.
-   
+
    2. Resolve *path* relative to the root of the Save Store.  Let *resource* be
       a reference to the resource at that location.
-   
+
    3. Return *resource*.
 
 4. If *path* begins with `#/...`, then:
@@ -199,15 +201,15 @@ to convert a path into a reference to a resource:
       extension, throw a `TypeError`.
 
    2. Otherwise, remove the first two characters from *path*.
-   
+
    3. Resolve *path* relative to the root of the SAC.  Let *resource* be a
       reference to the resource at that location.
-   
+
    4. Return *resource*.
 
 5. Otherwise:
-   
+
    1. Resolve *path* relative to the root of the Repository.  Let *resource* be
       a reference to the resource at that location.
-   
+
    2. Return *resource*.
