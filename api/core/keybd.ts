@@ -35,7 +35,8 @@ export default class KeybdModule
 	 */
 	public enum Key
 	{
-		Escape = 1,
+		None,
+		Escape,
 		F1,
 		F2,
 		F3,

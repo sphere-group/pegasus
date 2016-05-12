@@ -36,25 +36,37 @@ export default class Engine {
      * An Android-ish approach.  The API level increases whenever new features
      * are added to the core Pegasus standard.
      *
+     * @static
      * @readonly
-     * @type {Number}
+     * @type {number}
      */
     public static apiLevel: number = 1;
 
     /**
      * Get the name of the engine.
      *
+     * @static
      * @readonly
-     * @type {String}
+     * @type {string}
      */
     public static name: string = "minisphere";
+    
+    /**
+     * Get the version number of the engine.
+     *
+     * @static
+     * @readonly
+     * @type {string}
+     */
+	public static version: string = "4.0.0";
 
     /**
-     * Get an object with version strings for the engine
-     * and its dependencies.
+     * Get an object with version strings for the engine's various
+     * components and dependencies.
      *
+     * @static
      * @readonly
-     * @type {Object}
+     * @type {Map}
      */
     public static versions: Map = {
         "sphere": "2.0.0",
@@ -68,6 +80,8 @@ export default class Engine {
      * to true.  Unsupported extensions will simply not be present in the map.
      *
      * @static
+     * @readonly
+     * @type {Map}
      */
     public static extensions: Map = {
         "sphere_fs_absolute_path": true,
@@ -77,7 +91,8 @@ export default class Engine {
     /**
      * Abort the current game with a message.
      *
-     * @param {String} msg - Message to show after abort.
+     * @static
+     * @param {string} msg - Message to show after abort.
      * @noreturn
      */
     public static abort(msg?: string): void {
@@ -86,6 +101,7 @@ export default class Engine {
     /**
      * Exit the game unconditionally.
      *
+     * @static
      * @noreturn
      */
     public static exit(): void {
@@ -94,6 +110,7 @@ export default class Engine {
     /**
      * Restart the engine.
      *
+     * @static
      * @noreturn
      */
     public static restart(): void {
