@@ -182,7 +182,8 @@ export interface IShaderOptions {
     fragment: string;
 }
 
-export class Shader {
+export class Shader
+{
 
     /**
      * Create a new shader.
@@ -190,18 +191,32 @@ export class Shader {
      * @constructor
      * @param {IShaderOptions} options [description]
      */
-    constructor(options: IShaderOptions) {
-
+    constructor(options: IShaderOptions)
+    {
     }
+}
+
+export enum ShapeType
+{
+	Auto,
+	Fan,
+	Lines,
+	LineLoop,
+	LineStrip,
+	Points,
+	Triangles,
+	TriangleStrip,
 }
 
 export class Shape {
     // getset texture
 
-    constructor() {
+    constructor(vertices: object[], texture?: Image, type?: ShapeType)
+    {
     }
 
-    public draw(target?: Surface, matrix?: Transform, shader?: Shader): void {
+    public draw(target?: Surface, matrix?: Transform): void
+    {
     }
 }
 

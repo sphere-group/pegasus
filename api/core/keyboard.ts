@@ -141,15 +141,6 @@ export default class KeyboardModule
 	}
 
 	/**
-	 *  Get the next key in the key queue.
-	 *
-	 *  @static
-	 */
-	public static getKey(): Key
-	{
-	}
-
-	/**
 	 *  Find whether a keyboard key is currently pressed.
 	 *
 	 *  @static
@@ -157,6 +148,27 @@ export default class KeyboardModule
 	 *  @return {boolean} - Whether the key is pressed.
 	 */
 	public static isPressed(key: Key): boolean
+	{
+	}
+	
+	/**
+	 *  Get the Unicode character associated with a keyboard key.
+	 *  For example, keyToChar(Key.A) is "A".
+	 *
+	 *  Non-character keys such as PageUp or Shift will give an empty string.
+	 *
+	 *  @param {Key} key- A keyboard key.
+	 */
+	public static keyToChar(key: Key): string
+	{
+	}
+
+	/**
+	 *  Read the next key from the key queue.
+	 *
+	 *  @static
+	 */
+	public static readKey(): Key
 	{
 	}
 }
