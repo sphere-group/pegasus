@@ -24,11 +24,11 @@
  */
 
 /**
- * @module keybd
+ * @module keyboard
  * @author Bruce Pascoe (Fat Cerberus)
  */
 
-export default class KeybdModule
+export default class KeyboardModule
 {
 	/**
 	 *  Keyboard key constants.
@@ -119,16 +119,16 @@ export default class KeybdModule
 		Right,
 		Down,
 		Left,
-		Pad0,
-		Pad1,
-		Pad2,
-		Pad3,
-		Pad4,
-		Pad5,
-		Pad6,
-		Pad7,
-		Pad8,
-		Pad9
+		NumPad0,
+		NumPad1,
+		NumPad2,
+		NumPad3,
+		NumPad4,
+		NumPad5,
+		NumPad6,
+		NumPad7,
+		NumPad8,
+		NumPad9
 	}
 
 	/**

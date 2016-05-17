@@ -24,12 +24,11 @@
  */
 
 /**
- * Graphics module
- * @module gfx
+ * @module graphics
  * @author Bruce Pascoe (Fat Cerberus) and Jos Kuijpers (Rahkiin)
  */
 
-export default class GfxModule {
+export default class GraphicsModule {
 
     /**
      * Set or get the frameRate for throttling of flip().
