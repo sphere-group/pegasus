@@ -25,95 +25,122 @@
 
 /**
  * @module graphics
- * @author Bruce Pascoe (Fat Cerberus) and Jos Kuijpers (Rahkiin)
+ * @author Bruce Pascoe (Fat Cerberus), Jos Kuijpers (Rahkiin)
  */
 
-export default class GraphicsModule {
-
-    /**
-     * Set or get the frameRate for throttling of flip().
-     *
-     * Set to 0 to disable throttling.
-     *
-     * @type {number}
-     */
-    public static frameRate: number;
-
+export default class GraphicsModule
+{
     /**
      * Get the default render target (the backbuffer).
      *
      * @readonly
      * @type {Surface}
      */
-    public static screen: Surface;
+    public static screen: IScreen;
+}
 
+export interface IScreen extends Surface
+{
     /**
-     * Flip the backbuffer to the screen.
-     */
-    public static flip(): void {
-    }
-
-    /**
-     * Set the resolution of the target drawing area.
+     * Frame rate used for throttling flip(), 0 to run at full speed.
+     * When flip() is called continuously in a loop, the engine will provide
+     * automatic rate-limiting based on the framerate.
      *
-     * @param {number} width  A positive integer.
-     * @param {number} height A positibe integer.
+     * @type {number}
      */
-    public static setResolution(width: number, height: number): void {
+    public frameRate: number;
+    
+    /**
+     * The height of the screen resolution, in pixels.
+     *
+     * @type {number}
+     */
+    public height: number;
 
-    }
+    /**
+     * The width of the screen resolution, in pixels.
+     *
+     * @type {number}
+     */
+    public width: number;
+    
+	/**
+	 * Flip the backbuffer to the screen.
+	 */
+	public flip(): void
+	{
+	}
 }
 
 /**
  * A color abstraction with utility functions.
  */
-export class Color {
+export class Color
+{
+    /**
+     * Blend one color with another using linear interpolation.
+     * The optional weights specify the ratio of one color to another in the
+     * final blend.  If no weights are not given, the result is a 50/50 blend.
+     *
+     * @return {Color} The new, blended color.
+     * @param {Color} color1 The first color in the blend.
+     * @param {Color} color2 The second color in the blend.
+     * @param {number} w1 The relative weight of the first color.
+     * @param {number} w2 The relative weight of the second color.
+     */
+    public static blend(color1: Color, color2: Color, w1?: number, w2?: number): Color
+    {
+    }
 
     /**
-     * Create a new color.
+     * Constructs a new Color.
      *
      * @constructor
-     * @param {Number} r - Red value, ranging 0.0 to 1.0.
-     * @param {Number} g - Green value, ranging 0.0 to 1.0.
-     * @param {Number} b - Blue value, ranging 0.0 to 1.0.
-     * @param {Number} [a=1.0] - Alpha value, ranging 0.0 to 1.0.
+     * @param {Number} r Red value, ranging 0.0 to 1.0.
+     * @param {Number} g Green value, ranging 0.0 to 1.0.
+     * @param {Number} b Blue value, ranging 0.0 to 1.0.
+     * @param {Number} [a=1.0] Alpha value, ranging 0.0 to 1.0.
      */
-    constructor(public red: number, public green: number, public blue: number, public alpha?: number) {
-        this.alpha = this.alpha || 1.0;
+    constructor(r: number, g: number, b: number, a?: number)
+    {
     }
+    
+    /**
+     * The value of the R (red) color channel.
+     *
+     * @type {number}
+     */
+    public r: number;
+    
+    /**
+     * The value of the G (green) color channel.
+     *
+     * @type {number}
+     */
+    public g: number;
+    
+    /**
+     * The value of the B (blue) color channel.
+     *
+     * @type {number}
+     */
+    public b: number;
 
     /**
-     * Blend the color with another using linear interpolation.
-     * All color channels are interpolated, included the alpha channel.
+     * The value of the A (alpha) color channel.
      *
-     * @param {Color} color2 - The color to blend with.
-     * @param {number} alpha - The alpha value to use for blending. Ranges [0-1].
-     * @return {Color} The new color.
+     * @type {number}
      */
-    public blend(color2: Color, alpha: number): Color {
-        return this.blendWeighted(color, 0.5, 0.5);
-    }
+    public a: number;
 
     /**
-     * Get a copy of this color.
+     * Clones this color to create a new copy.
      *
-     * @return {Color} New copy.
+     * @return {Color} The cloned Color object.
      */
-    public clone(): Color {
-        return new Color(this.red, this.green, this.blue, this.alpha);
-    }
-
-    /**
-     * Transform the color using matrix multiplication.
-     *
-     * The alpha component is ignored and the matrix is calculated as though
-     * alpha = 1.0.
-     *
-     * @param  {Transform} transform The Transform to use.
-     * @return {Color}               The new color.
-     */
-    public transform(transform: Transform): Color {
-        return this;
+    public clone(): Color
+    {
+        return new Color(this.r, this.g, this.b, this.a);
     }
 }
 
@@ -122,7 +149,17 @@ export class Color {
  */
 export class Group {
     /**
-     * Shader on the group.
+     * Constructs a Group from a list of Shapes.
+     *
+     * @constructor
+     * @param {Shape[]} shapes The Shapes which make up the group.
+     */
+    constructor(shapes: Shape[])
+    {
+    }
+
+    /**
+     * A Shader to use when drawing the Group.
      *
      * @type {Shader}
      */
@@ -135,19 +172,27 @@ export class Group {
      */
     public transform: Transform;
 
-    constructor(public shapes: Shape[]) {
-    }
-
     /**
-     * Draw the group.
+     * Draws the Group.
      *
-     * @param {Surface} target - The Surface to draw to.
+     * @param {Surface} target The Surface to draw on.
      */
-    public draw(target?: Surface) {
+    public draw(target?: Surface)
+    {
     }
 }
 
 export class Image {
+    /**
+     * Constructs a new Image from an image file.
+     *
+     * @constructor
+     * @param {string} filename SphereFS filename of the image to load.
+     */
+    constructor(filename: string)
+    {
+    }
+
     /**
      * Width of the image.
      *
@@ -163,9 +208,6 @@ export class Image {
      * @type {number}
      */
     public height: number;
-
-    constructor(public filename: string) {
-    }
 }
 
 export interface IShaderOptions {
@@ -196,6 +238,10 @@ export class Shader
     }
 }
 
+/**
+ * Describes the type of a Shape.
+ * This affects how a Shape's vertices are interpreted by the GPU.
+ */
 export enum ShapeType
 {
 	Auto,
@@ -208,24 +254,110 @@ export enum ShapeType
 	TriangleStrip,
 }
 
-export class Shape {
-    // getset texture
+/**
+ * Describes a Vertex of a Shape.
+ */
+export interface IVertex
+{
+	/**
+	 * X coordinate of the vertex.
+	 *
+	 * @type {number}
+	 */
+	x: number;
+	
+	/**
+	 * Y coordinate of the vertex.
+	 *
+	 * @type {number}
+	 */
+	y: number;
+	
+	/**
+	 * Z coordinate of the vertex.
+	 *
+	 * @type {number}
+	 */
+	z?: number;
+	
+	/**
+	 * "U" texture coordinate of the vertex.
+	 * Texture coordinates determine which part of a texture should be applied
+	 * at each vertex. U goes left-to-right from 0.0 - 1.0.
+	 *
+	 * @type {number}
+	 */
+	u: number;
 
-    constructor(vertices: object[], texture?: Image, type?: ShapeType)
+	/**
+	 * "V" texture coordinate of the vertex.
+	 * Texture coordinates determine which part of a texture should be applied
+	 * at each vertex. V goes bottom-to-top from 0.0 - 1.0.
+	 *
+	 * @type {number}
+	 */
+	v: number;
+	
+	/**
+	 * The color of the vertex.
+	 * Vertex colors are interpolated over the shape and multiplied with the
+	 * texel colors to decide the final color of each fragment.
+	 *
+	 * @type {Color}
+	 */
+	color: Color;
+}
+
+export class Shape {
+    /**
+     * Constructs a new Shape.
+     *
+     * @param {IVertex[]} vlist Array of vertices describing the shape's mesh.
+     * @param {Image} texture An Image to use to texture the shape. Can be null.
+     * @param {ShapeType} type Which type of Shape to create.
+     */
+     */
+    constructor(vlist: IVertex[], texture?: Image, type?: ShapeType)
     {
     }
 
-    public draw(target?: Surface, matrix?: Transform): void
+    /**
+     * An Image which will be used as a texture for this Shape.
+     *
+     * @type {Image}
+     */
+    public texture: Image
+
+    /**
+     * Draws the shape.
+     *
+     * @param {Surface} target The Surface to draw on.
+     * @param {Transform} transform A Transformation matrix to apply.
+     */
+    public draw(target?: Surface, transform?: Transform): void
     {
     }
 }
 
 /**
- * Drawable surface.
+ * Represents a drawable surface.
+ * Surfaces can be used as render targets in place of the screen.
  */
-export class Surface {
+export class Surface
+{
     /**
-     * Width of surface.
+     * Constructs a new Surface.
+     *
+     * @constructor
+     * @param {number} width Width of the surface.
+     * @param {number} height Height of the surface.
+     */
+    constructor(width: number, height: number)
+    {
+    }
+
+    /**
+     * Gets the width of the surface.
      *
      * @readonly
      * @type {number}
@@ -233,7 +365,7 @@ export class Surface {
     public width: number;
 
     /**
-     * Height of surface.
+     * Gets the height of the surface.
      *
      * @readonly
      * @type {number}
@@ -241,94 +373,94 @@ export class Surface {
     public height: number;
 
     /**
-     * [constructor description]
-     * @param {number} public width  Width of surface.
-     * @param {number} public height Height of surface.
-     */
-    constructor(width: number, height: number) {
-        this.width = width;
-        this.height = height;
-    }
-
-    /**
-     * Create an Image from the surface contents.
+     * Generates an Image from the surface contents.
+     * Modifying the surface contents after this is called will not affect the
+     * generated image.
      *
-     * Note that modifying the surface contents after this is called will not
-     * affect the generated image.
-     *
-     * @return {Image} [description]
+     * @return {Image} An Image created from the Surface.
      */
-    public toImage(): Image {
-        return null;
+    public toImage(): Image
+    {
     }
 }
 
 /**
  * Represents a transformation matrix.
  * Transforms are used for transformations such as scaling and rotation when
- * rendering primitives, and can also be used as color matrices if that's
+ * rendering Shapes, and can also be used as RGB color matrices if that's
  * supported by the shader.
  */
-export class Transform {
-
-    constructor() {
-    }
-
+export class Transform
+{
     /**
-     * Multiplies another Transform into this one.
+     * Constructs a new Transform.
      *
-     * The result of this function is to make a combined transformation.  For
-     * example, composing a rotation with a translation will result in a
-     * matrix which rotates and then translates in one step.
-     *
-     * @param {Transform} other - The Transform to multiply this one with.
+     * @constructor
      */
-    public compose(other: Transform): void {
-    }
-
-    /**
-     * Sets this Transform to identity (no transformation).
-     */
-    public identity(): void {
-    }
-
-    /**
-     * Applies a rotation to the transformation matrix.
-     *
-     * @param {number} theta - The rotation angle, in radians.
-     * @param {number} vx - X component of the axis to rotate around.
-     * @param {number} vy - Y component of the axis to rotate around.
-     * @param {number} vz - Z component of the axis to rotate around.
-     */
-    public rotate(theta: number, vx: number, vy: number, vz: number): void {
-    }
-
-    /**
-     * Applies a scaling transform to the transformation matrix.
-     *
-     * @param {number} sx - X axis scaling factor.
-     * @param {number} sy - Y axis scaling factor.
-     * @param {number} sz - Z axis scaling factor.
-     */
-    public scale(sx: number, sy: number, sz: number): void {
-    }
-
-    /**
-     * Applies a translation to the transformation matrix.
-     *
-     * @param {number} dx - Amount to translate along the X axis.
-     * @param {number} dy - Amount to translate along the Y axis.
-     * @param {number} dz - Amount to translate along the Z axis.
-     */
-    public translate(tx: number, ty: number, tz: number) {
+    constructor()
+    {
     }
 
     /**
      * Get an independent copy of this Transform.
      *
-     * @return {Transform} - The cloned Transform object.
+     * @return {Transform} The cloned Transform object.
      */
-    public clone(): Transform {
+    public clone(): Transform
+    {
         return this;
+    }
+
+    /**
+     * Multiplies another Transform into this one.
+     * The result of this function is to make a combined transformation.  For
+     * example, composing a rotation with a translation will result in a
+     * matrix which rotates and then translates in one step.
+     *
+     * @param {Transform} other The Transform to multiply this one with.
+     */
+    public compose(other: Transform): void
+    {
+    }
+
+    /**
+     * Sets this Transform to identity (no transformation).
+     */
+    public identity(): void
+    {
+    }
+
+    /**
+     * Applies a rotation to the transformation matrix.
+     *
+     * @param {number} theta The rotation angle, in radians.
+     * @param {number} [vx=0.0] X component of the vector to rotate around.
+     * @param {number} [vy=0.0] Y component of the vector to rotate around.
+     * @param {number} [vz=1.0] Z component of the vector to rotate around.
+     */
+    public rotate(theta: number, vx?: number, vy?: number, vz?: number): void
+    {
+    }
+
+    /**
+     * Applies a scaling transform to the transformation matrix.
+     *
+     * @param {number} sx X axis scaling factor.
+     * @param {number} sy Y axis scaling factor.
+     * @param {number} [sz=1.0] Z axis scaling factor.
+     */
+    public scale(sx: number, sy: number, sz?: number): void
+    {
+    }
+
+    /**
+     * Applies a translation to the transformation matrix.
+     *
+     * @param {number} dx Amount to translate along the X axis.
+     * @param {number} dy Amount to translate along the Y axis.
+     * @param {number} [dz=0.0] Amount to translate along the Z axis.
+     */
+    public translate(dx: number, dy: number, dz?: number): void
+    {
     }
 }
