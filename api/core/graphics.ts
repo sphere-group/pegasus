@@ -78,17 +78,17 @@ export interface IScreen extends Surface
 export class Color
 {
     /**
-     * Blend one color with another using linear interpolation.
-     * The optional weights specify the ratio of one color to another in the
-     * final blend.  If no weights are not given, the result is a 50/50 blend.
+     * Calculates a weighted average of two colors.  The optional weights
+     * specify the ratio of one color to another in the final mix.  If weights
+     * are not provided, the result is a 50/50 mix.
      *
-     * @return {Color} The new, blended color.
-     * @param {Color} color1 The first color in the blend.
-     * @param {Color} color2 The second color in the blend.
+     * @return {Color} The new, mixed color.
+     * @param {Color} color1 The first color in the mix.
+     * @param {Color} color2 The second color in the mix.
      * @param {number} w1 The relative weight of the first color.
      * @param {number} w2 The relative weight of the second color.
      */
-    public static blend(color1: Color, color2: Color, w1?: number, w2?: number): Color
+    public static mix(color1: Color, color2: Color, w1?: number, w2?: number): Color
     {
     }
 
