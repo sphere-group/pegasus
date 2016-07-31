@@ -30,9 +30,10 @@
 
 export default class Random {
     /**
-     * Seeds the random number generator.
+     * Initializes (or re-initializes) the random number generator with a given
+     * seed.  Different seeds generate different random sequences.
      */
-    public static seed(seedValue: number): void {
+    public static init(seed: number): void {
     };
 
     /**
@@ -42,6 +43,18 @@ export default class Random {
      */
     public static chance(odds: number): boolean {
         precondition(odds >= 0.0 && odds <= 1.0)
+    };
+
+    /**
+     * Generates a random integer in a specified range.
+     *
+     * @param {Number} min - The minimum value.
+     * @param {Number} max - The maximum value.
+     */
+    public static discrete(min: number, max: number): number {
+        precondition(max >= min);
+
+        return Math.round((min + max) / 2);
     };
 
     /**
@@ -57,25 +70,6 @@ export default class Random {
     };
 
     /**
-     * Generates a random number in the range [0-1).
-     */
-    public static random(): number {
-        return 0.5;
-    };
-
-    /**
-     * Generates a random integer in a specified range.
-     *
-     * @param {Number} min - The minimum value.
-     * @param {Number} max - The maximum value.
-     */
-    public static integer(min: number, max: number): number {
-        precondition(max >= min);
-
-        return Math.round((min + max) / 2);
-    };
-
-    /**
      * Returns a random item from an array.
      *
      * @param {Array} array - The array to sample.
@@ -87,7 +81,7 @@ export default class Random {
             return undefined;
         }
 
-        return array[this.integer(0, array.length - 1)];
+        return array[this.discrete(0, array.length - 1)];
     };
 
     /**
@@ -106,7 +100,7 @@ export default class Random {
      * variance.
      *
      * @param {Number} average - The average value.
-     * @param {Number} variance - The maximum amount by which the value can deviate.
+     * @param {Number} variance - The maximum variance ("give or take X").
      */
     public static uniform(average: number, variance: number): number {
         precondition(variance >= 0.0);
